@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { ethers } from "ethers";
 
-import TokenizerAbi from "../../artifacts/contracts/TradeCoinComposition.sol/TradeCoinCompositionV2.json";
+import CompositionAbi from "../../artifacts/contracts/TradeCoinComposition.sol/TradeCoinCompositionV2.json";
 import ContractAdresses from "./../../contract-address.json";
 import { notifyError, notifySuccess } from "../ToastNotify";
 import Card from "../Card";
@@ -28,7 +28,7 @@ function AppendCommodityToComposition() {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         ContractAdresses.TradeCoinComposition,
-        TokenizerAbi.abi,
+        CompositionAbi.abi,
         signer
       );
 

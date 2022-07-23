@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { ethers } from "ethers";
 
-import TokenizerAbi from "../../artifacts/contracts/TradeCoinTokenizerV2.sol/TradeCoinTokenizerV2.json";
+import CompositionAbi from "../../artifacts/contracts/TradeCoinComposition.sol/TradeCoinCompositionV2.json";
 import ContractAdresses from "./../../contract-address.json";
 import Card from "../Card";
 import { notifyError, notifySuccess } from "../ToastNotify";
@@ -28,7 +28,7 @@ function ApproveAddress() {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         ContractAdresses.TradeCoinComposition,
-        TokenizerAbi.abi,
+        CompositionAbi.abi,
         signer
       );
       let transaction;

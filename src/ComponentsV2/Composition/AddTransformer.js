@@ -7,13 +7,14 @@ import ContractAdresses from "./../../contract-address.json";
 import { notifyError, notifySuccess } from "../ToastNotify";
 import Card from "../Card";
 
-function Decomposition() {
-  const [compositionId, setCompositionId] = useState(undefined);
-  const field = [["Composition ID", setCompositionId]];
+function AddTransformer() {
+  const [addressForRole, setAddressForRoleVal] = useState("");
   const [loading, setLoadingVal] = useState(false);
 
-  async function decomposition() {
-    if (!compositionId) return;
+  const fields = [["Address for role", setAddressForRoleVal]];
+
+  async function addTransformer() {
+    if (!addressForRole) return;
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
@@ -23,14 +24,15 @@ function Decomposition() {
       setLoadingVal(true);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
-        ContractAdresses.TradeCoinComposition,
+        ContractAdresses.TradeCoinV4,
         CompositionAbi.abi,
         signer
       );
 
       let transaction;
       try {
-        transaction = await contract.decomposition(compositionId);
+        transaction = await contract.addTransformationHandler(addressForRole);
+
         let receipt = await transaction.wait();
         setLoadingVal(false);
         notifySuccess(receipt.transactionHash);
@@ -49,12 +51,12 @@ function Decomposition() {
 
   return (
     <Card
-      title="Decomposition"
-      func={decomposition}
-      inputFields={field}
+      title="Grant Transformer Handler Role"
+      func={addTransformer}
+      inputFields={fields}
       loading={loading}
     />
   );
 }
 
-export default Decomposition;
+export default AddTransformer;

@@ -16,6 +16,9 @@ import SplitProduct from "./SplitProduct";
 import WithdrawPayment from "./WithdrawPayment";
 import ApproveAddress from "./ApproveAddress";
 import TransferFrom from "../Tokenizer/TransferFrom";
+import AddTokenizer from "./AddTokenizer";
+import AddTransformer from "./AddTransformer";
+import AddInformationHandler from "./AddInformationHandler";
 
 function TradeCoin() {
   return (
@@ -89,6 +92,21 @@ function TradeCoin() {
         </div>
         <div className="div2">
           <ChangeHandlerState />
+        </div>
+      </div>
+
+      <div className="div3">
+        <div className="div1">
+          <AddTokenizer />
+        </div>
+        <div className="div2">
+          <AddTransformer />
+        </div>
+      </div>
+
+      <div className="div3">
+        <div className="div1">
+          <AddInformationHandler />
         </div>
       </div>
     </div>

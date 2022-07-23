@@ -59,7 +59,7 @@ contract RoleControl is AccessControl {
     // Add a user address as a Tokenizer
     function addTokenizer(address account) external {
         //onlyAdmin {
-        grantRole(TOKENIZER_ROLE, account);
+        _grantRole(TOKENIZER_ROLE, account);
     }
 
     // remove a user address as a Tokenizer
@@ -90,7 +90,7 @@ contract RoleControl is AccessControl {
     // Add a user address as a ProductHandlers
     function addTransformationHandler(address account) external {
         //onlyAdmin {
-        grantRole(TRANSFORMATION_HANDLER_ROLE, account);
+        _grantRole(TRANSFORMATION_HANDLER_ROLE, account);
     }
 
     // remove a user address as a ProductHandlers
@@ -117,7 +117,7 @@ contract RoleControl is AccessControl {
     // Add a user address as a InformationHandlers
     function addInformationHandler(address account) external {
         //onlyAdmin {
-        grantRole(INFORMATION_HANDLER_ROLE, account);
+        _grantRole(INFORMATION_HANDLER_ROLE, account);
     }
 
     // remove a user address as a InformationHandlers
