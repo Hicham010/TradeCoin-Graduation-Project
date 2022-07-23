@@ -6,16 +6,16 @@ export default function Navbar() {
       </a>
       <ul>
         <li>
-          <a href="/tokenizer">Tokenize</a>
+          <a href="/TradeCoin-Graduation-Project/tokenizer">Tokenize</a>
         </li>
         <li>
-          <a href="/commodity">Commodity</a>
+          <a href="/TradeCoin-Graduation-Project/commodity">Commodity</a>
         </li>
         <li>
-          <a href="/composition">Composition</a>
+          <a href="/TradeCoin-Graduation-Project/composition">Composition</a>
         </li>
         <li>
-          <a href="/journey">Journey</a>
+          <a href="/TradeCoin-Graduation-Project/journey">Journey</a>
         </li>
       </ul>
     </nav>
