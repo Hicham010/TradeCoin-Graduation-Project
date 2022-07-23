@@ -24,7 +24,7 @@ function AddTokenizer() {
       setLoadingVal(true);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
-        ContractAdresses.TradeCoinV4,
+        ContractAdresses.TradeCoinComposition,
         CompositionAbi.abi,
         signer
       );
