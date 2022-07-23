@@ -1,0 +1,1489 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Slither",
+          "informationUri": "https://github.com/crytic/slither",
+          "version": "0.8.3",
+          "rules": [
+            {
+              "id": "0-1-reentrancy-eth",
+              "name": "reentrancy-eth",
+              "properties": {
+                "precision": "high",
+                "security-severity": "8.0"
+              },
+              "shortDescription": {
+                "text": "Reentrancy vulnerabilities"
+              },
+              "help": {
+                "text": "Apply the [`check-effects-interactions pattern`](http://solidity.readthedocs.io/en/v0.4.21/security-considerations.html#re-entrancy)."
+              }
+            },
+            {
+              "id": "1-1-reentrancy-no-eth",
+              "name": "reentrancy-no-eth",
+              "properties": {
+                "precision": "high",
+                "security-severity": "4.0"
+              },
+              "shortDescription": {
+                "text": "Reentrancy vulnerabilities"
+              },
+              "help": {
+                "text": "Apply the [`check-effects-interactions` pattern](http://solidity.readthedocs.io/en/v0.4.21/security-considerations.html#re-entrancy)."
+              }
+            },
+            {
+              "id": "1-1-uninitialized-local",
+              "name": "uninitialized-local",
+              "properties": {
+                "precision": "high",
+                "security-severity": "4.0"
+              },
+              "shortDescription": {
+                "text": "Uninitialized local variables"
+              },
+              "help": {
+                "text": "Initialize all the variables. If a variable is meant to be initialized to zero, explicitly set it to zero to improve code readability."
+              }
+            },
+            {
+              "id": "2-1-calls-loop",
+              "name": "calls-loop",
+              "properties": {
+                "precision": "high",
+                "security-severity": "3.0"
+              },
+              "shortDescription": {
+                "text": "Calls inside a loop"
+              },
+              "help": {
+                "text": "Favor [pull over push](https://github.com/ethereum/wiki/wiki/Safety#favor-pull-over-push-for-external-calls) strategy for external calls."
+              }
+            },
+            {
+              "id": "2-1-reentrancy-benign",
+              "name": "reentrancy-benign",
+              "properties": {
+                "precision": "high",
+                "security-severity": "3.0"
+              },
+              "shortDescription": {
+                "text": "Reentrancy vulnerabilities"
+              },
+              "help": {
+                "text": "Apply the [`check-effects-interactions` pattern](http://solidity.readthedocs.io/en/v0.4.21/security-considerations.html#re-entrancy)."
+              }
+            },
+            {
+              "id": "2-1-reentrancy-events",
+              "name": "reentrancy-events",
+              "properties": {
+                "precision": "high",
+                "security-severity": "3.0"
+              },
+              "shortDescription": {
+                "text": "Reentrancy vulnerabilities"
+              },
+              "help": {
+                "text": "Apply the [`check-effects-interactions` pattern](http://solidity.readthedocs.io/en/v0.4.21/security-considerations.html#re-entrancy)."
+              }
+            },
+            {
+              "id": "3-0-solc-version",
+              "name": "solc-version",
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "0.0"
+              },
+              "shortDescription": {
+                "text": "Incorrect versions of Solidity"
+              },
+              "help": {
+                "text": "\nDeploy with any of the following Solidity versions:\n- 0.5.16 - 0.5.17\n- 0.6.11 - 0.6.12\n- 0.7.5 - 0.7.6\n- 0.8.4 - 0.8.7\nUse a simple pragma version that allows any of these versions.\nConsider using the latest version of Solidity for testing."
+              }
+            },
+            {
+              "id": "3-0-naming-convention",
+              "name": "naming-convention",
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "0.0"
+              },
+              "shortDescription": {
+                "text": "Conformance to Solidity naming conventions"
+              },
+              "help": {
+                "text": "Follow the Solidity [naming convention](https://solidity.readthedocs.io/en/v0.4.25/style-guide.html#naming-conventions)."
+              }
+            },
+            {
+              "id": "4-0-external-function",
+              "name": "external-function",
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "0.0"
+              },
+              "shortDescription": {
+                "text": "Public function that could be declared external"
+              },
+              "help": {
+                "text": "Use the `external` attribute for functions never called from the contract."
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "0-1-reentrancy-eth",
+          "message": {
+            "text": "Reentrancy in TradeCoinV4.mintCommodity(uint256) (contracts/ComposableTC/TradeCoinV4.sol#96-129):\n\tExternal calls:\n\t- tradeCoinTokenizer.burnToken(tokenIdOfTokenizer) (contracts/ComposableTC/TradeCoinV4.sol#121)\n\tExternal calls sending eth:\n\t- address(_sale.seller).transfer(_sale.priceInWei) (contracts/ComposableTC/TradeCoinV4.sol#106)\n\tState variables written after the call(s):\n\t- tokenCounter += 1 (contracts/ComposableTC/TradeCoinV4.sol#127)\n",
+            "markdown": "Reentrancy in [TradeCoinV4.mintCommodity(uint256)](contracts/ComposableTC/TradeCoinV4.sol#L96-L129):\n\tExternal calls:\n\t- [tradeCoinTokenizer.burnToken(tokenIdOfTokenizer)](contracts/ComposableTC/TradeCoinV4.sol#L121)\n\tExternal calls sending eth:\n\t- [address(_sale.seller).transfer(_sale.priceInWei)](contracts/ComposableTC/TradeCoinV4.sol#L106)\n\tState variables written after the call(s):\n\t- [tokenCounter += 1](contracts/ComposableTC/TradeCoinV4.sol#L127)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 96,
+                  "endLine": 129
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "174cd0675a174c36900a6ba15fc871c08284b9b35fc827abe36401119449748c"
+          }
+        },
+        {
+          "ruleId": "1-1-reentrancy-no-eth",
+          "message": {
+            "text": "Reentrancy in TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256) (contracts/ComposableTC/TradeCoinComposition.sol#118-155):\n\tExternal calls:\n\t- tradeCoinV4.transferFrom(address(this),msg.sender,tokenIdTC) (contracts/ComposableTC/TradeCoinComposition.sol#136)\n\tState variables written after the call(s):\n\t- tradeCoinComposition[_tokenIdComposition].tokenIdsOfTC[_indexTokenIdTC] = lastTokenId (contracts/ComposableTC/TradeCoinComposition.sol#138-140)\n\t- tradeCoinComposition[_tokenIdComposition].tokenIdsOfTC.pop() (contracts/ComposableTC/TradeCoinComposition.sol#142)\n\t- tradeCoinComposition[_tokenIdComposition].cumulativeAmount -= amountOfTC (contracts/ComposableTC/TradeCoinComposition.sol#146-147)\n",
+            "markdown": "Reentrancy in [TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L118-L155):\n\tExternal calls:\n\t- [tradeCoinV4.transferFrom(address(this),msg.sender,tokenIdTC)](contracts/ComposableTC/TradeCoinComposition.sol#L136)\n\tState variables written after the call(s):\n\t- [tradeCoinComposition[_tokenIdComposition].tokenIdsOfTC[_indexTokenIdTC] = lastTokenId](contracts/ComposableTC/TradeCoinComposition.sol#L138-L140)\n\t- [tradeCoinComposition[_tokenIdComposition].tokenIdsOfTC.pop()](contracts/ComposableTC/TradeCoinComposition.sol#L142)\n\t- [tradeCoinComposition[_tokenIdComposition].cumulativeAmount -= amountOfTC](contracts/ComposableTC/TradeCoinComposition.sol#L146-L147)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 118,
+                  "endLine": 155
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "d37ac3422254ad2609a187d5bd1af55f541784b4d0a841b8d92daba9d5d4086b"
+          }
+        },
+        {
+          "ruleId": "1-1-uninitialized-local",
+          "message": {
+            "text": "TradeCoinCompositionV3.burnComposition(uint256).i (contracts/ComposableTC/TradeCoinComposition.sol#179) is a local variable never initialized\n",
+            "markdown": "[TradeCoinCompositionV3.burnComposition(uint256).i](contracts/ComposableTC/TradeCoinComposition.sol#L179) is a local variable never initialized\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 179,
+                  "endLine": 179
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "4664939c89ec40da3c4e1f0f0ed20bdd8f9091415959986f6e14b7760e7c637e"
+          }
+        },
+        {
+          "ruleId": "1-1-uninitialized-local",
+          "message": {
+            "text": "TradeCoinV4.splitCommodity(uint256,uint256[]).i (contracts/ComposableTC/TradeCoinV4.sol#295) is a local variable never initialized\n",
+            "markdown": "[TradeCoinV4.splitCommodity(uint256,uint256[]).i](contracts/ComposableTC/TradeCoinV4.sol#L295) is a local variable never initialized\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 295,
+                  "endLine": 295
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "82353ba6545efa40601d980295fb0ee504519007a0f2c253b8a1f2c6f2fab92f"
+          }
+        },
+        {
+          "ruleId": "1-1-uninitialized-local",
+          "message": {
+            "text": "TradeCoinCompositionV3.decomposition(uint256).i (contracts/ComposableTC/TradeCoinComposition.sol#162) is a local variable never initialized\n",
+            "markdown": "[TradeCoinCompositionV3.decomposition(uint256).i](contracts/ComposableTC/TradeCoinComposition.sol#L162) is a local variable never initialized\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 162,
+                  "endLine": 162
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "c8050b1263732247a9ff582657191be9cada56511d8805d24a299f1f8079e758"
+          }
+        },
+        {
+          "ruleId": "1-1-uninitialized-local",
+          "message": {
+            "text": "TradeCoinV4.splitCommodity(uint256,uint256[]).i_scope_0 (contracts/ComposableTC/TradeCoinV4.sol#315) is a local variable never initialized\n",
+            "markdown": "[TradeCoinV4.splitCommodity(uint256,uint256[]).i_scope_0](contracts/ComposableTC/TradeCoinV4.sol#L315) is a local variable never initialized\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 315,
+                  "endLine": 315
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "ee779ffa51be76eafd27bbad4281eea310e526f8149ad0cf7fcba5d293eb3952"
+          }
+        },
+        {
+          "ruleId": "1-1-uninitialized-local",
+          "message": {
+            "text": "TradeCoinCompositionV3.createComposition(string,uint256[],address).i (contracts/ComposableTC/TradeCoinComposition.sol#48) is a local variable never initialized\n",
+            "markdown": "[TradeCoinCompositionV3.createComposition(string,uint256[],address).i](contracts/ComposableTC/TradeCoinComposition.sol#L48) is a local variable never initialized\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 48,
+                  "endLine": 48
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "f65c70b1354c6f0f8702b6d8cc5e44dc03f576eefc9ebd9fb05b60f9640f1683"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.createComposition(string,uint256[],address) (contracts/ComposableTC/TradeCoinComposition.sol#37-93) has external calls inside a loop: tradeCoinV4.changeCurrentHandlerAndState(tokenIdsOfTC[i],address(0),ITradeCoin.State.Stored) (contracts/ComposableTC/TradeCoinComposition.sol#63-67)\n",
+            "markdown": "[TradeCoinCompositionV3.createComposition(string,uint256[],address)](contracts/ComposableTC/TradeCoinComposition.sol#L37-L93) has external calls inside a loop: [tradeCoinV4.changeCurrentHandlerAndState(tokenIdsOfTC[i],address(0),ITradeCoin.State.Stored)](contracts/ComposableTC/TradeCoinComposition.sol#L63-L67)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 37,
+                  "endLine": 93
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "31231cbc12615864a9673a23148328fd8190cbc5707f0057e56ddd8bd2139a1b"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.decomposition(uint256) (contracts/ComposableTC/TradeCoinComposition.sol#157-173) has external calls inside a loop: tradeCoinV4.transferFrom(address(this),msg.sender,productIds[i]) (contracts/ComposableTC/TradeCoinComposition.sol#163)\n",
+            "markdown": "[TradeCoinCompositionV3.decomposition(uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L157-L173) has external calls inside a loop: [tradeCoinV4.transferFrom(address(this),msg.sender,productIds[i])](contracts/ComposableTC/TradeCoinComposition.sol#L163)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 157,
+                  "endLine": 173
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "a013b094f9b2a6a613de11f0d02190c96961744534bf68cda97aaef9ab2a88c2"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.createComposition(string,uint256[],address) (contracts/ComposableTC/TradeCoinComposition.sol#37-93) has external calls inside a loop: (amountOfTC,stateOfProduct) = tradeCoinV4.tradeCoinCommodity(tokenIdsOfTC[i]) (contracts/ComposableTC/TradeCoinComposition.sol#55-60)\n",
+            "markdown": "[TradeCoinCompositionV3.createComposition(string,uint256[],address)](contracts/ComposableTC/TradeCoinComposition.sol#L37-L93) has external calls inside a loop: [(amountOfTC,stateOfProduct) = tradeCoinV4.tradeCoinCommodity(tokenIdsOfTC[i])](contracts/ComposableTC/TradeCoinComposition.sol#L55-L60)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 37,
+                  "endLine": 93
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "c923b7d4a8dbaaf2a85ebcc949c56c15f3eef4a6edfec6ba34e25a274d50ac50"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.createComposition(string,uint256[],address) (contracts/ComposableTC/TradeCoinComposition.sol#37-93) has external calls inside a loop: tradeCoinV4.transferFrom(msg.sender,address(this),tokenIdsOfTC[i]) (contracts/ComposableTC/TradeCoinComposition.sol#49-53)\n",
+            "markdown": "[TradeCoinCompositionV3.createComposition(string,uint256[],address)](contracts/ComposableTC/TradeCoinComposition.sol#L37-L93) has external calls inside a loop: [tradeCoinV4.transferFrom(msg.sender,address(this),tokenIdsOfTC[i])](contracts/ComposableTC/TradeCoinComposition.sol#L49-L53)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 37,
+                  "endLine": 93
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "e6205e4ab28f16336b7c6b7ecd59c84ab65e02971cbf67f0869e2c3793b65e64"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.burnComposition(uint256) (contracts/ComposableTC/TradeCoinComposition.sol#175-189) has external calls inside a loop: tradeCoinV4.burnCommodity(commodityIds[i]) (contracts/ComposableTC/TradeCoinComposition.sol#180)\n",
+            "markdown": "[TradeCoinCompositionV3.burnComposition(uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L175-L189) has external calls inside a loop: [tradeCoinV4.burnCommodity(commodityIds[i])](contracts/ComposableTC/TradeCoinComposition.sol#L180)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 175,
+                  "endLine": 189
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "ea3f745df55862ae294accdee7c18fd966d960e8199fbde4cf667a91e0b56e1a"
+          }
+        },
+        {
+          "ruleId": "2-1-reentrancy-benign",
+          "message": {
+            "text": "Reentrancy in TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256) (contracts/ComposableTC/TradeCoinComposition.sol#95-116):\n\tExternal calls:\n\t- tradeCoinV4.transferFrom(msg.sender,address(this),_tokenIdTC) (contracts/ComposableTC/TradeCoinComposition.sol#101)\n\tState variables written after the call(s):\n\t- tradeCoinComposition[_tokenIdComposition].tokenIdsOfTC.push(_tokenIdTC) (contracts/ComposableTC/TradeCoinComposition.sol#103)\n\t- tradeCoinComposition[_tokenIdComposition].cumulativeAmount += amountOfTC (contracts/ComposableTC/TradeCoinComposition.sol#107-108)\n",
+            "markdown": "Reentrancy in [TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L95-L116):\n\tExternal calls:\n\t- [tradeCoinV4.transferFrom(msg.sender,address(this),_tokenIdTC)](contracts/ComposableTC/TradeCoinComposition.sol#L101)\n\tState variables written after the call(s):\n\t- [tradeCoinComposition[_tokenIdComposition].tokenIdsOfTC.push(_tokenIdTC)](contracts/ComposableTC/TradeCoinComposition.sol#L103)\n\t- [tradeCoinComposition[_tokenIdComposition].cumulativeAmount += amountOfTC](contracts/ComposableTC/TradeCoinComposition.sol#L107-L108)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 95,
+                  "endLine": 116
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "381762b7756460ae2156abaf581365b3067d8294cc6754dcbeb30a8e0eca647b"
+          }
+        },
+        {
+          "ruleId": "2-1-reentrancy-benign",
+          "message": {
+            "text": "Reentrancy in TradeCoinV4.initializeSale(address,address,uint256,uint256) (contracts/ComposableTC/TradeCoinV4.sol#45-76):\n\tExternal calls:\n\t- tradeCoinTokenizer.transferFrom(msg.sender,address(this),tokenIdOfTokenizer) (contracts/ComposableTC/TradeCoinV4.sol#55-59)\n\tState variables written after the call(s):\n\t- commoditySaleQueue[tokenIdOfTokenizer] = CommoditySale(msg.sender,owner,handler,priceInWei == 0,priceInWei) (contracts/ComposableTC/TradeCoinV4.sol#61-67)\n",
+            "markdown": "Reentrancy in [TradeCoinV4.initializeSale(address,address,uint256,uint256)](contracts/ComposableTC/TradeCoinV4.sol#L45-L76):\n\tExternal calls:\n\t- [tradeCoinTokenizer.transferFrom(msg.sender,address(this),tokenIdOfTokenizer)](contracts/ComposableTC/TradeCoinV4.sol#L55-L59)\n\tState variables written after the call(s):\n\t- [commoditySaleQueue[tokenIdOfTokenizer] = CommoditySale(msg.sender,owner,handler,priceInWei == 0,priceInWei)](contracts/ComposableTC/TradeCoinV4.sol#L61-L67)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 45,
+                  "endLine": 76
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "9b4965c79c035c9f82ddab95280de9c4314f20e8adbb46d3e7e61947f7e69901"
+          }
+        },
+        {
+          "ruleId": "2-1-reentrancy-events",
+          "message": {
+            "text": "Reentrancy in TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256) (contracts/ComposableTC/TradeCoinComposition.sol#118-155):\n\tExternal calls:\n\t- tradeCoinV4.transferFrom(address(this),msg.sender,tokenIdTC) (contracts/ComposableTC/TradeCoinComposition.sol#136)\n\tEvent emitted after the call(s):\n\t- RemoveCommodityFromComposition(_tokenIdComposition,msg.sender,tokenIdTC) (contracts/ComposableTC/TradeCoinComposition.sol#150-154)\n",
+            "markdown": "Reentrancy in [TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L118-L155):\n\tExternal calls:\n\t- [tradeCoinV4.transferFrom(address(this),msg.sender,tokenIdTC)](contracts/ComposableTC/TradeCoinComposition.sol#L136)\n\tEvent emitted after the call(s):\n\t- [RemoveCommodityFromComposition(_tokenIdComposition,msg.sender,tokenIdTC)](contracts/ComposableTC/TradeCoinComposition.sol#L150-L154)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 118,
+                  "endLine": 155
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "11de8cb64371d455fde09b17a2d00b91e82211f764aed4fc07482ae9f5467970"
+          }
+        },
+        {
+          "ruleId": "2-1-reentrancy-events",
+          "message": {
+            "text": "Reentrancy in TradeCoinV4.mintCommodity(uint256) (contracts/ComposableTC/TradeCoinV4.sol#96-129):\n\tExternal calls:\n\t- tradeCoinTokenizer.burnToken(tokenIdOfTokenizer) (contracts/ComposableTC/TradeCoinV4.sol#121)\n\tExternal calls sending eth:\n\t- address(_sale.seller).transfer(_sale.priceInWei) (contracts/ComposableTC/TradeCoinV4.sol#106)\n\tEvent emitted after the call(s):\n\t- CompleteSale(tokenCounter,_sale.seller,msg.sender) (contracts/ComposableTC/TradeCoinV4.sol#123)\n",
+            "markdown": "Reentrancy in [TradeCoinV4.mintCommodity(uint256)](contracts/ComposableTC/TradeCoinV4.sol#L96-L129):\n\tExternal calls:\n\t- [tradeCoinTokenizer.burnToken(tokenIdOfTokenizer)](contracts/ComposableTC/TradeCoinV4.sol#L121)\n\tExternal calls sending eth:\n\t- [address(_sale.seller).transfer(_sale.priceInWei)](contracts/ComposableTC/TradeCoinV4.sol#L106)\n\tEvent emitted after the call(s):\n\t- [CompleteSale(tokenCounter,_sale.seller,msg.sender)](contracts/ComposableTC/TradeCoinV4.sol#L123)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 96,
+                  "endLine": 129
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "1b5edd2d92cee54946c060ccb3d1513e5b4afe4166042e948277e4b7ce5c5e23"
+          }
+        },
+        {
+          "ruleId": "2-1-reentrancy-events",
+          "message": {
+            "text": "Reentrancy in TradeCoinV4.initializeSale(address,address,uint256,uint256) (contracts/ComposableTC/TradeCoinV4.sol#45-76):\n\tExternal calls:\n\t- tradeCoinTokenizer.transferFrom(msg.sender,address(this),tokenIdOfTokenizer) (contracts/ComposableTC/TradeCoinV4.sol#55-59)\n\tEvent emitted after the call(s):\n\t- InitializeSale(tokenIdOfTokenizer,msg.sender,owner,priceInWei,priceInWei == 0) (contracts/ComposableTC/TradeCoinV4.sol#69-75)\n",
+            "markdown": "Reentrancy in [TradeCoinV4.initializeSale(address,address,uint256,uint256)](contracts/ComposableTC/TradeCoinV4.sol#L45-L76):\n\tExternal calls:\n\t- [tradeCoinTokenizer.transferFrom(msg.sender,address(this),tokenIdOfTokenizer)](contracts/ComposableTC/TradeCoinV4.sol#L55-L59)\n\tEvent emitted after the call(s):\n\t- [InitializeSale(tokenIdOfTokenizer,msg.sender,owner,priceInWei,priceInWei == 0)](contracts/ComposableTC/TradeCoinV4.sol#L69-L75)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 45,
+                  "endLine": 76
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "70c46d8a34182dba59e8bc06aca769e1fb0a2f6273dea2c1bca6796d0e9db252"
+          }
+        },
+        {
+          "ruleId": "2-1-reentrancy-events",
+          "message": {
+            "text": "Reentrancy in TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256) (contracts/ComposableTC/TradeCoinComposition.sol#95-116):\n\tExternal calls:\n\t- tradeCoinV4.transferFrom(msg.sender,address(this),_tokenIdTC) (contracts/ComposableTC/TradeCoinComposition.sol#101)\n\tEvent emitted after the call(s):\n\t- AppendCommodityToComposition(_tokenIdComposition,msg.sender,_tokenIdTC) (contracts/ComposableTC/TradeCoinComposition.sol#111-115)\n",
+            "markdown": "Reentrancy in [TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L95-L116):\n\tExternal calls:\n\t- [tradeCoinV4.transferFrom(msg.sender,address(this),_tokenIdTC)](contracts/ComposableTC/TradeCoinComposition.sol#L101)\n\tEvent emitted after the call(s):\n\t- [AppendCommodityToComposition(_tokenIdComposition,msg.sender,_tokenIdTC)](contracts/ComposableTC/TradeCoinComposition.sol#L111-L115)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 95,
+                  "endLine": 116
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "81cd5c1b4d58b5f098cdc05afa23be4d4c30c6eac970306ae6fee6d63fcb3ac0"
+          }
+        },
+        {
+          "ruleId": "3-0-solc-version",
+          "message": {
+            "text": "Pragma version^0.8.3 (contracts/ComposableTC/RoleControl.sol#2) allows old versions\n",
+            "markdown": "Pragma version[^0.8.3](contracts/ComposableTC/RoleControl.sol#L2) allows old versions\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/RoleControl.sol"
+                },
+                "region": {
+                  "startLine": 2,
+                  "endLine": 2
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "2e1ed294d6962b0e7bbb9094d24db9c3701e4fc7e7c6283c0119544134204bce"
+          }
+        },
+        {
+          "ruleId": "3-0-solc-version",
+          "message": {
+            "text": "Pragma version^0.8.3 (contracts/ComposableTC/TradeCoinV4.sol#2) allows old versions\n",
+            "markdown": "Pragma version[^0.8.3](contracts/ComposableTC/TradeCoinV4.sol#L2) allows old versions\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 2,
+                  "endLine": 2
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "7783524e1f1d4539996af6fe17336aa508766aea4b4e8ef2bd205bae6654d254"
+          }
+        },
+        {
+          "ruleId": "3-0-solc-version",
+          "message": {
+            "text": "Pragma version^0.8.3 (contracts/ComposableTC/TradeCoinComposition.sol#2) allows old versions\n",
+            "markdown": "Pragma version[^0.8.3](contracts/ComposableTC/TradeCoinComposition.sol#L2) allows old versions\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 2,
+                  "endLine": 2
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "dc6c5b7066793c2fc33ecb29a839ec4f5db071a3e6f38aef292703078baed1e7"
+          }
+        },
+        {
+          "ruleId": "3-0-solc-version",
+          "message": {
+            "text": "Pragma version^0.8.3 (contracts/ComposableTC/interfaces/ITradeCoinTokenizer.sol#2) allows old versions\n",
+            "markdown": "Pragma version[^0.8.3](contracts/ComposableTC/interfaces/ITradeCoinTokenizer.sol#L2) allows old versions\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/interfaces/ITradeCoinTokenizer.sol"
+                },
+                "region": {
+                  "startLine": 2,
+                  "endLine": 2
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "ebe272ad62dfb99a293bf156f0b28b38cc4b772ed9e529d72aee88bb38b19304"
+          }
+        },
+        {
+          "ruleId": "3-0-solc-version",
+          "message": {
+            "text": "Pragma version^0.8.3 (contracts/ComposableTC/interfaces/ITradeCoin.sol#2) allows old versions\n",
+            "markdown": "Pragma version[^0.8.3](contracts/ComposableTC/interfaces/ITradeCoin.sol#L2) allows old versions\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/interfaces/ITradeCoin.sol"
+                },
+                "region": {
+                  "startLine": 2,
+                  "endLine": 2
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "f08d0decb34b1574a9be33f6a8d2818d6bbb14bb1957f9e93093023fe941055f"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.changeStateAndHandler(uint256,address,ITradeCoinComposition.State)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#250) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.changeStateAndHandler(uint256,address,ITradeCoinComposition.State)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L250) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 250,
+                  "endLine": 250
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "035655bcd2299cb2b8f77eb1cc8765a63a6b354ebc791ffab3156fb78f469be7"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinTokenizerV2.mintToken(string,uint256,string)._unit (contracts/ComposableTC/TradeCoinTokenizerV2.sol#23) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinTokenizerV2.mintToken(string,uint256,string)._unit](contracts/ComposableTC/TradeCoinTokenizerV2.sol#L23) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinTokenizerV2.sol"
+                },
+                "region": {
+                  "startLine": 23,
+                  "endLine": 23
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "07c9129f4ebbb29f85b27d9a865688dd7a0b78162b617e06b283645866a96ea5"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256)._tokenIdTC (contracts/ComposableTC/TradeCoinComposition.sol#97) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256)._tokenIdTC](contracts/ComposableTC/TradeCoinComposition.sol#L97) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 97,
+                  "endLine": 97
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "1b1d26dc79b79249a1edaa48cc4887f8e3123c2616b6917c16f62214c60d097f"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.changeStateAndHandler(uint256,address,ITradeCoinComposition.State)._newState (contracts/ComposableTC/TradeCoinComposition.sol#252) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.changeStateAndHandler(uint256,address,ITradeCoinComposition.State)._newState](contracts/ComposableTC/TradeCoinComposition.sol#L252) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 252,
+                  "endLine": 252
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "1c0c0f48d83773385ff77bccd36aef0cedec409469a7e42e30d76331640aa52e"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.addTransformation(uint256,string)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#192) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.addTransformation(uint256,string)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L192) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 192,
+                  "endLine": 192
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "25f2cffb6da76a2a3aacd2f1f4ead2e3225343bc6b46a3fd8780b0feeb967f88"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.checkQualityOfComposition(uint256,string)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#225) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.checkQualityOfComposition(uint256,string)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L225) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 225,
+                  "endLine": 225
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "2b6e6bf116311a1539fa9138e4ac310183206d5d438e81b397e4ee5136db20fc"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.addTransformationDecrease(uint256,string,uint256)._transformationCode (contracts/ComposableTC/TradeCoinComposition.sol#204) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.addTransformationDecrease(uint256,string,uint256)._transformationCode](contracts/ComposableTC/TradeCoinComposition.sol#L204) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 204,
+                  "endLine": 204
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "32d5d355b2c500233649ac0a928b11b986f29774ef14e77ea010b31bf98acb41"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinTokenizerV2.mintToken(string,uint256,string)._amount (contracts/ComposableTC/TradeCoinTokenizerV2.sol#22) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinTokenizerV2.mintToken(string,uint256,string)._amount](contracts/ComposableTC/TradeCoinTokenizerV2.sol#L22) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinTokenizerV2.sol"
+                },
+                "region": {
+                  "startLine": 22,
+                  "endLine": 22
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "44411bb206a7e4c8fbf374cd49170d12ee678231c5d3fa734bc0323d961509c8"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.burnCommodity(uint256)._tokenId (contracts/ComposableTC/TradeCoinV4.sol#335) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.burnCommodity(uint256)._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L335) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 335,
+                  "endLine": 335
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "5396534086c00fd5ed6664f7ca2dd5e7203f81abdba56fd07a4a99627079fb71"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.splitCommodity(uint256,uint256[])._tokenId (contracts/ComposableTC/TradeCoinV4.sol#288) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.splitCommodity(uint256,uint256[])._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L288) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 288,
+                  "endLine": 288
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "6540f34028f43f275272394a6deefc1798b771bf071e08b4a536c337710020d0"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.checkQualityOfCommodity(uint256,string)._tokenId (contracts/ComposableTC/TradeCoinV4.sol#216) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.checkQualityOfCommodity(uint256,string)._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L216) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 216,
+                  "endLine": 216
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "6bb4e71cf821c787df776d120b70c55e21d69772f9d38ae5c9a1e2633515ec76"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256)._tokenIdComposition (contracts/ComposableTC/TradeCoinComposition.sol#96) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.appendCommodityToComposition(uint256,uint256)._tokenIdComposition](contracts/ComposableTC/TradeCoinComposition.sol#L96) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 96,
+                  "endLine": 96
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "6c6a11f93b7b643a11079626f0ceb952488a16911d050c9f2708afe64c9bdf41"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.burnComposition(uint256)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#175) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.burnComposition(uint256)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L175) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 175,
+                  "endLine": 175
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "8285ffbb056e54dbad928b01ec9b2cb1fdbfea6a91a479d9e1e9522bf8354de8"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.addTransformationDecrease(uint256,string,uint256)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#203) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.addTransformationDecrease(uint256,string,uint256)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L203) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 203,
+                  "endLine": 203
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "82b88a62925dd140ae729586b06bc174a3083bd9332c0c2488f9421b475e67d8"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.changeStateAndHandler(uint256,address,ITradeCoinComposition.State)._newCurrentHandler (contracts/ComposableTC/TradeCoinComposition.sol#251) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.changeStateAndHandler(uint256,address,ITradeCoinComposition.State)._newCurrentHandler](contracts/ComposableTC/TradeCoinComposition.sol#L251) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 251,
+                  "endLine": 251
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "895951f72d803a675b7e06d981a8968839b0dec844de3bd541ae09cee4ba31da"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.confirmCommodityLocation(uint256,uint256,uint256,uint256)._tokenId (contracts/ComposableTC/TradeCoinV4.sol#226) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.confirmCommodityLocation(uint256,uint256,uint256,uint256)._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L226) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 226,
+                  "endLine": 226
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "9155cd1a33ffa4fc36d5f0c0890d35d09812f182af2e157758f12c8bb01e7a7d"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.addTransformation(uint256,string)._transformationCode (contracts/ComposableTC/TradeCoinComposition.sol#193) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.addTransformation(uint256,string)._transformationCode](contracts/ComposableTC/TradeCoinComposition.sol#L193) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 193,
+                  "endLine": 193
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "9420c54bfc28119201db86722f78d872ecb606364a1caed49dda5f2fd75a147e"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.changeCurrentHandlerAndState(uint256,address,ITradeCoin.State)._tokenId (contracts/ComposableTC/TradeCoinV4.sol#191) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.changeCurrentHandlerAndState(uint256,address,ITradeCoin.State)._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L191) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 191,
+                  "endLine": 191
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "a2b7e49403bb357e48a12ab76dc4ca34c3755c73bd04d0470d9e76430ff07b94"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.addInformationToCommodity(uint256,string)._tokenId (contracts/ComposableTC/TradeCoinV4.sol#207) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.addInformationToCommodity(uint256,string)._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L207) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 207,
+                  "endLine": 207
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "a54b8698b5932a328b0d35ed3fc10eabb8704cd0f6ce314a14866874a0afba06"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.batchCommodities(uint256[])._tokenIds (contracts/ComposableTC/TradeCoinV4.sol#240) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.batchCommodities(uint256[])._tokenIds](contracts/ComposableTC/TradeCoinV4.sol#L240) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 240,
+                  "endLine": 240
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "a834576290bf547cd52372093241eb5f58ee206ed49e9f64f47378afc9ebf163"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinTokenizerV2.mintToken(string,uint256,string)._commodity (contracts/ComposableTC/TradeCoinTokenizerV2.sol#21) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinTokenizerV2.mintToken(string,uint256,string)._commodity](contracts/ComposableTC/TradeCoinTokenizerV2.sol#L21) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinTokenizerV2.sol"
+                },
+                "region": {
+                  "startLine": 21,
+                  "endLine": 21
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "aa19450db47d213d5d7098617690bb124120c6b7ecbd80a2a4922a7f94849d91"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.addInformationToComposition(uint256,string)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#216) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.addInformationToComposition(uint256,string)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L216) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 216,
+                  "endLine": 216
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "ae0fd5c0175f04a392e70e8463c20de9ddc748dbe93ff731829ad4dcd7092c2c"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256)._indexTokenIdTC (contracts/ComposableTC/TradeCoinComposition.sol#120) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256)._indexTokenIdTC](contracts/ComposableTC/TradeCoinComposition.sol#L120) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 120,
+                  "endLine": 120
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "b71613ae1dfbcdffcf461e05ae7544c06b2a5afd3f8bce57020111b022b579f3"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256)._tokenIdComposition (contracts/ComposableTC/TradeCoinComposition.sol#119) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.removeCommodityFromComposition(uint256,uint256)._tokenIdComposition](contracts/ComposableTC/TradeCoinComposition.sol#L119) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 119,
+                  "endLine": 119
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "c0578a258f37b0f049a09507a8fb6baae6078c00f0f29e01d542530badc05c11"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.addTransformationDecrease(uint256,string,uint256)._tokenId (contracts/ComposableTC/TradeCoinV4.sol#172) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.addTransformationDecrease(uint256,string,uint256)._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L172) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 172,
+                  "endLine": 172
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "c3d5a22621f05d56b421491e398ee770c219467e8615acf4b4de6b1b82a28b96"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.getIdsOfCommodities(uint256)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#265) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.getIdsOfCommodities(uint256)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L265) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 265,
+                  "endLine": 265
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "ce3b56a6b1717b6a092a76333cfb6398a72d6f071acfa0337fa85d37172f0a3d"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinV4.addTransformation(uint256,string)._tokenId (contracts/ComposableTC/TradeCoinV4.sol#158) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinV4.addTransformation(uint256,string)._tokenId](contracts/ComposableTC/TradeCoinV4.sol#L158) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinV4.sol"
+                },
+                "region": {
+                  "startLine": 158,
+                  "endLine": 158
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "ebf2e971f0981e1db820a09e3e6f8c3881284106290352c66e45469472b6df09"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.confirmCompositionLocation(uint256,uint256,uint256,uint256)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#235) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.confirmCompositionLocation(uint256,uint256,uint256,uint256)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L235) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 235,
+                  "endLine": 235
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "f3c056d03f9a6fbde9ef751aa382764e078613602cc67a8bf60678b6cbc39f94"
+          }
+        },
+        {
+          "ruleId": "3-0-naming-convention",
+          "message": {
+            "text": "Parameter TradeCoinCompositionV3.decomposition(uint256)._tokenId (contracts/ComposableTC/TradeCoinComposition.sol#157) is not in mixedCase\n",
+            "markdown": "Parameter [TradeCoinCompositionV3.decomposition(uint256)._tokenId](contracts/ComposableTC/TradeCoinComposition.sol#L157) is not in mixedCase\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 157,
+                  "endLine": 157
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "fe3cb1b5c4ed4c039943f46c3cabda568dca509074aa18ff49298355da15dcd8"
+          }
+        },
+        {
+          "ruleId": "4-0-external-function",
+          "message": {
+            "text": "removeInformationHandler(address) should be declared external:\n\t- RoleControl.removeInformationHandler(address) (contracts/ComposableTC/RoleControl.sol#121-123)\n",
+            "markdown": "removeInformationHandler(address) should be declared external:\n\t- [RoleControl.removeInformationHandler(address)](contracts/ComposableTC/RoleControl.sol#L121-L123)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/RoleControl.sol"
+                },
+                "region": {
+                  "startLine": 121,
+                  "endLine": 123
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "48f7591531d8a0e9fdd59e0007e248d9159a935fad406568d7c6571328a742a0"
+          }
+        },
+        {
+          "ruleId": "4-0-external-function",
+          "message": {
+            "text": "removeTransformationHandler(address) should be declared external:\n\t- RoleControl.removeTransformationHandler(address) (contracts/ComposableTC/RoleControl.sol#95-97)\n",
+            "markdown": "removeTransformationHandler(address) should be declared external:\n\t- [RoleControl.removeTransformationHandler(address)](contracts/ComposableTC/RoleControl.sol#L95-L97)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/RoleControl.sol"
+                },
+                "region": {
+                  "startLine": 95,
+                  "endLine": 97
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "999bc11d84252985b4236f6c83c0095a6a741b187522a901a6ffadfcfe4a2722"
+          }
+        },
+        {
+          "ruleId": "4-0-external-function",
+          "message": {
+            "text": "burnComposition(uint256) should be declared external:\n\t- TradeCoinCompositionV3.burnComposition(uint256) (contracts/ComposableTC/TradeCoinComposition.sol#175-189)\n",
+            "markdown": "burnComposition(uint256) should be declared external:\n\t- [TradeCoinCompositionV3.burnComposition(uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L175-L189)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 175,
+                  "endLine": 189
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "b12ad651ddef92fc86b43d58ee7d78da01e98ea02fd5e969c0aaa0895b376700"
+          }
+        },
+        {
+          "ruleId": "4-0-external-function",
+          "message": {
+            "text": "addInformationHandler(address) should be declared external:\n\t- RoleControl.addInformationHandler(address) (contracts/ComposableTC/RoleControl.sol#116-118)\n",
+            "markdown": "addInformationHandler(address) should be declared external:\n\t- [RoleControl.addInformationHandler(address)](contracts/ComposableTC/RoleControl.sol#L116-L118)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/RoleControl.sol"
+                },
+                "region": {
+                  "startLine": 116,
+                  "endLine": 118
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "f9c828fe4f46d86940f5e193272bc0b9893813a8e40709e17fe37dabf783efcb"
+          }
+        }
+      ]
+    }
+  ]
+}

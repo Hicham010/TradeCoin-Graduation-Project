@@ -1,0 +1,153 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Slither",
+          "informationUri": "https://github.com/crytic/slither",
+          "version": "0.8.3",
+          "rules": [
+            {
+              "id": "2-1-calls-loop",
+              "name": "calls-loop",
+              "properties": {
+                "precision": "high",
+                "security-severity": "3.0"
+              },
+              "shortDescription": {
+                "text": "Calls inside a loop"
+              },
+              "help": {
+                "text": "Favor [pull over push](https://github.com/ethereum/wiki/wiki/Safety#favor-pull-over-push-for-external-calls) strategy for external calls."
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.createComposition(string,uint256[],address) (contracts/ComposableTC/TradeCoinComposition.sol#37-93) has external calls inside a loop: tradeCoinV4.changeCurrentHandlerAndState(tokenIdsOfTC[i],address(0),ITradeCoin.State.Stored) (contracts/ComposableTC/TradeCoinComposition.sol#63-67)\n",
+            "markdown": "[TradeCoinCompositionV3.createComposition(string,uint256[],address)](contracts/ComposableTC/TradeCoinComposition.sol#L37-L93) has external calls inside a loop: [tradeCoinV4.changeCurrentHandlerAndState(tokenIdsOfTC[i],address(0),ITradeCoin.State.Stored)](contracts/ComposableTC/TradeCoinComposition.sol#L63-L67)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 37,
+                  "endLine": 93
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "31231cbc12615864a9673a23148328fd8190cbc5707f0057e56ddd8bd2139a1b"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.burnComposition(uint256) (contracts/ComposableTC/TradeCoinComposition.sol#174-189) has external calls inside a loop: tradeCoinV4.burnCommodity(commodityIds[i]) (contracts/ComposableTC/TradeCoinComposition.sol#184)\n",
+            "markdown": "[TradeCoinCompositionV3.burnComposition(uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L174-L189) has external calls inside a loop: [tradeCoinV4.burnCommodity(commodityIds[i])](contracts/ComposableTC/TradeCoinComposition.sol#L184)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 174,
+                  "endLine": 189
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "6d09bd0f0933197ed4e9e730e81f43aaa9129d2a0460887f0de4e1e64365e34e"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.createComposition(string,uint256[],address) (contracts/ComposableTC/TradeCoinComposition.sol#37-93) has external calls inside a loop: (amountOfTC,stateOfProduct) = tradeCoinV4.tradeCoinCommodity(tokenIdsOfTC[i]) (contracts/ComposableTC/TradeCoinComposition.sol#55-60)\n",
+            "markdown": "[TradeCoinCompositionV3.createComposition(string,uint256[],address)](contracts/ComposableTC/TradeCoinComposition.sol#L37-L93) has external calls inside a loop: [(amountOfTC,stateOfProduct) = tradeCoinV4.tradeCoinCommodity(tokenIdsOfTC[i])](contracts/ComposableTC/TradeCoinComposition.sol#L55-L60)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 37,
+                  "endLine": 93
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "c923b7d4a8dbaaf2a85ebcc949c56c15f3eef4a6edfec6ba34e25a274d50ac50"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.createComposition(string,uint256[],address) (contracts/ComposableTC/TradeCoinComposition.sol#37-93) has external calls inside a loop: tradeCoinV4.transferFrom(msg.sender,address(this),tokenIdsOfTC[i]) (contracts/ComposableTC/TradeCoinComposition.sol#49-53)\n",
+            "markdown": "[TradeCoinCompositionV3.createComposition(string,uint256[],address)](contracts/ComposableTC/TradeCoinComposition.sol#L37-L93) has external calls inside a loop: [tradeCoinV4.transferFrom(msg.sender,address(this),tokenIdsOfTC[i])](contracts/ComposableTC/TradeCoinComposition.sol#L49-L53)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 37,
+                  "endLine": 93
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "e6205e4ab28f16336b7c6b7ecd59c84ab65e02971cbf67f0869e2c3793b65e64"
+          }
+        },
+        {
+          "ruleId": "2-1-calls-loop",
+          "message": {
+            "text": "TradeCoinCompositionV3.decomposition(uint256) (contracts/ComposableTC/TradeCoinComposition.sol#156-172) has external calls inside a loop: tradeCoinV4.transferFrom(address(this),msg.sender,productIds[i]) (contracts/ComposableTC/TradeCoinComposition.sol#167)\n",
+            "markdown": "[TradeCoinCompositionV3.decomposition(uint256)](contracts/ComposableTC/TradeCoinComposition.sol#L156-L172) has external calls inside a loop: [tradeCoinV4.transferFrom(address(this),msg.sender,productIds[i])](contracts/ComposableTC/TradeCoinComposition.sol#L167)\n"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "contracts/ComposableTC/TradeCoinComposition.sol"
+                },
+                "region": {
+                  "startLine": 156,
+                  "endLine": 172
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "id": "fc602977130ccfb9fec01918a9a61025bf7e5262c4c70fd0d9e45c924b5d9b61"
+          }
+        }
+      ]
+    }
+  ]
+}
