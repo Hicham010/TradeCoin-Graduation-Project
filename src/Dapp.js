@@ -14,19 +14,19 @@ import ConnectModal from "./ComponentsV2/ConnectModal";
 function TradeCoinDapp() {
   let Component;
   switch (window.location.pathname) {
-    case "/":
+    case "https://hicham010.github.io/TradeCoin-Graduation-Project/":
       Component = TradeCoin;
       break;
-    case "/tokenizer":
+    case "https://hicham010.github.io/TradeCoin-Graduation-Project/tokenizer":
       Component = Tokenizer;
       break;
-    case "/commodity":
+    case "https://hicham010.github.io/TradeCoin-Graduation-Project/commodity":
       Component = TradeCoin;
       break;
-    case "/composition":
+    case "https://hicham010.github.io/TradeCoin-Graduation-Project/composition":
       Component = Composition;
       break;
-    case "/journey":
+    case "https://hicham010.github.io/TradeCoin-Graduation-Project/journey":
       Component = Journey;
       break;
     default:
