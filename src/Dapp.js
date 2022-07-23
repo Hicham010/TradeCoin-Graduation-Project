@@ -7,33 +7,12 @@ import Composition from "./ComponentsV2/Composition/Composition";
 import Journey from "./ComponentsV2/Journey.js/Journey";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { NotFound } from "./ComponentsV2/NotFound";
+// import { NotFound } from "./ComponentsV2/NotFound";
 import ConnectModal from "./ComponentsV2/ConnectModal";
+import { Route, Routes } from "react-router-dom";
 // import Navbar from "react-bootstrap/Navbar";
 
 function TradeCoinDapp() {
-  let Component;
-  switch (window.location.pathname) {
-    case "/TradeCoin-Graduation-Project/":
-      Component = TradeCoin;
-      break;
-    case "/TradeCoin-Graduation-Project/tokenizer":
-      Component = Tokenizer;
-      break;
-    case "/TradeCoin-Graduation-Project/commodity":
-      Component = TradeCoin;
-      break;
-    case "/TradeCoin-Graduation-Project/composition":
-      Component = Composition;
-      break;
-    case "/TradeCoin-Graduation-Project/journey":
-      Component = Journey;
-      break;
-    default:
-      Component = NotFound;
-      break;
-  }
-
   return (
     <div id="dapp">
       <div>
@@ -43,7 +22,13 @@ function TradeCoinDapp() {
         <Navbar />
       </div>
       <div>
-        <Component />
+        <Routes>
+          <Route path="/" element={<TradeCoin />} />
+          <Route path="/tokenizer" element={<Tokenizer />} />
+          <Route path="/commodity" element={<TradeCoin />} />
+          <Route path="/composition" element={<Composition />} />
+          <Route path="/journey" element={<Journey />} />
+        </Routes>
       </div>
       <ToastContainer />
     </div>

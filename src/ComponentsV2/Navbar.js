@@ -1,21 +1,23 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
   return (
     <nav className="nav">
-      <a href="/" className="site-title">
-        TradeCoin{" "}
-      </a>
+      <Link to="/" className="site-title">
+        TradeCoin
+      </Link>
       <ul>
         <li>
-          <a href="/TradeCoin-Graduation-Project/tokenizer">Tokenize</a>
+          <Link to="/tokenizer">Tokenize</Link>
         </li>
         <li>
-          <a href="/TradeCoin-Graduation-Project/commodity">Commodity</a>
+          <Link to="/commodity">Commodity</Link>
         </li>
         <li>
-          <a href="/TradeCoin-Graduation-Project/composition">Composition</a>
+          <Link to="/composition">Composition</Link>
         </li>
         <li>
-          <a href="/TradeCoin-Graduation-Project/journey">Journey</a>
+          <Link to="/journey">Journey</Link>
         </li>
       </ul>
     </nav>
