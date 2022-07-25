@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/TradeCoin-Graduation-Project/static/css/main.1b858bc5.css",
-    "main.js": "/TradeCoin-Graduation-Project/static/js/main.d5380de4.js",
+    "main.js": "/TradeCoin-Graduation-Project/static/js/main.af34dd6e.js",
     "index.html": "/TradeCoin-Graduation-Project/index.html",
     "main.1b858bc5.css.map": "/TradeCoin-Graduation-Project/static/css/main.1b858bc5.css.map",
-    "main.d5380de4.js.map": "/TradeCoin-Graduation-Project/static/js/main.d5380de4.js.map"
+    "main.af34dd6e.js.map": "/TradeCoin-Graduation-Project/static/js/main.af34dd6e.js.map"
   },
   "entrypoints": [
     "static/css/main.1b858bc5.css",
-    "static/js/main.d5380de4.js"
+    "static/js/main.af34dd6e.js"
   ]
 }
