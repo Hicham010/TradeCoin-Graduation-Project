@@ -37,7 +37,7 @@ function AddTransformationDec() {
 
       let transaction;
       try {
-        transaction = await contract.addTransformation(
+        transaction = await contract.addTransformationDecrease(
           productID,
           transformation,
           amount
@@ -60,7 +60,7 @@ function AddTransformationDec() {
 
   return (
     <Card
-      title="Add Transformation With Decrease"
+      title="Add Transformation With Amount Decrease"
       func={addTransformation}
       inputFields={fields}
       loading={loading}

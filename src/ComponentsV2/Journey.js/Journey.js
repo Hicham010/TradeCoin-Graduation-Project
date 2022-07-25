@@ -253,8 +253,11 @@ function Journey() {
     let mapOfOwnerIds = [];
     for (let i = 0; i < tokenCounter; i++) {
       if (balanceOf === mapOfOwnerIds.length) break;
+      let ownerOfId;
+      try {
+        ownerOfId = await contract.ownerOf(i);
+      } catch {}
 
-      let ownerOfId = await contract.ownerOf(i);
       if (ownerOfId === addressOfWallet) {
         mapOfOwnerIds.push([i]);
       }

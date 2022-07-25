@@ -16,6 +16,7 @@ import RemoveCommodityFromComposition from "./RemoveCommodityFromComposition";
 import TransferFrom from "./TransferFrom";
 import AddTokenizer from "./AddTokenizer";
 import AddInformationHandler from "./AddInformationHandler";
+import AddTransformationDec from "./AddTransformationDec";
 
 function Composition() {
   return (
@@ -61,30 +62,34 @@ function Composition() {
           <AddTransformation />
         </div>
         <div className="div1">
+          <AddTransformationDec />
           <ChangeHandlerState />
         </div>
       </div>
 
       <div className="div3">
         <div className="div2">
+          <ChangeHandlerState />
+        </div>
+        <div className="div1">
           <TransferFrom />
         </div>
-        <div className="div1">
+      </div>
+
+      <div className="div3">
+        <div className="div2">
           <ApproveAddress />
         </div>
-      </div>
-
-      <div className="div3">
-        <div className="div2">
+        <div className="div1">
           <AddTransformer />
         </div>
-        <div className="div1">
-          <AddTokenizer />
-        </div>
       </div>
 
       <div className="div3">
         <div className="div2">
+          <AddTokenizer />
+        </div>
+        <div className="div1">
           <AddInformationHandler />
         </div>
       </div>

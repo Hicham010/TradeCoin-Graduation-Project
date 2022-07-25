@@ -10,7 +10,7 @@ import Card from "../Card";
 
 function WithdrawPayment() {
   const [tokenIdOfTokenizer, setTokenIdOfTokenizerVal] = useState(0);
-  const field = [["Tokenizer ID", setTokenIdOfTokenizerVal]];
+  const field = [["Token ID", setTokenIdOfTokenizerVal]];
   const [loading, setLoadingVal] = useState(false);
 
   async function withdrawPayment() {

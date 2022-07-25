@@ -2,18 +2,25 @@ import React from "react";
 import { useState } from "react";
 import { ethers } from "ethers";
 
-import TokenizerAbi from "../../artifacts/contracts/TradeCoinTokenizerV2.sol/TradeCoinTokenizerV2.json";
+import CompositionAbi from "../../artifacts/contracts/TradeCoinComposition.sol/TradeCoinCompositionV2.json";
 import ContractAdresses from "./../../contract-address.json";
 import { notifyError, notifySuccess } from "../ToastNotify";
 import Card from "../Card";
 
-function Burn() {
-  const [tokenId, setTokenIdVal] = useState(0);
-  const field = [["Token ID", setTokenIdVal]];
+function AddTransformationDec() {
+  const [productID, setProductIDVal] = useState(0);
+  const [transformation, setTransformationVal] = useState("");
+  const [amount, setAmountVal] = useState(0);
   const [loading, setLoadingVal] = useState(false);
 
-  async function burn() {
-    if (!tokenId) return;
+  const fields = [
+    ["Product ID", setProductIDVal],
+    ["Transformation", setTransformationVal],
+    ["Decrease Amount", setAmountVal],
+  ];
+
+  async function addTransformation() {
+    if (!productID && !transformation && !amount) return;
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
@@ -23,13 +30,18 @@ function Burn() {
       setLoadingVal(true);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
-        ContractAdresses.TradeCoinTokenizerV2,
-        TokenizerAbi.abi,
+        ContractAdresses.TradeCoinComposition,
+        CompositionAbi.abi,
         signer
       );
+
       let transaction;
       try {
-        transaction = await contract.burnToken(tokenId);
+        transaction = await contract.addTransformationDecrease(
+          productID,
+          transformation,
+          amount
+        );
         let receipt = await transaction.wait();
         setLoadingVal(false);
         notifySuccess(receipt.transactionHash);
@@ -48,12 +60,12 @@ function Burn() {
 
   return (
     <Card
-      title="Burn Commodity"
-      func={burn}
-      inputFields={field}
+      title="Add Transformation With Amount Decrease"
+      func={addTransformation}
+      inputFields={fields}
       loading={loading}
     />
   );
 }
 
-export default Burn;
+export default AddTransformationDec;

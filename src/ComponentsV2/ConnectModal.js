@@ -54,7 +54,7 @@ function ConnectModal() {
       if (netID !== 5) {
         setMessage(
           "You must be connected to the Goerli test network. " +
-            "And press the connect button again if you are connected."
+            "Press the connect button again if you are connected."
         );
         addGoerli();
       } else {
@@ -72,7 +72,7 @@ function ConnectModal() {
             "Thank you for connecting with " +
               addr +
               ". You can add the NFTs to your wallet by pressing the buttons bellow. " +
-              "You can close this window. "
+              "Afterwards, you can close this window. "
           );
         } catch (error) {
           setMessage(error.message);

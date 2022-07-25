@@ -13,7 +13,7 @@ function DecreaseAmount() {
   const [amount, setAmountVal] = useState(0);
   const [loading, setLoadingVal] = useState(false);
   const fields = [
-    ["Commodity ID", setTokenIdVal],
+    ["Token ID", setTokenIdVal],
     ["Amount", setAmountVal],
   ];
 
