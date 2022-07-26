@@ -1,23 +1,23 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <nav className="nav">
-      <a href="/#/" className="site-title">
+      <Link to="/" className="site-title">
         TradeCoin
-      </a>
+      </Link>
       <ul>
         <li>
-          <a href="/#/tokenizer">Tokenize</a>
+          <Link to="/tokenizer">Tokenize</Link>
         </li>
         <li>
-          <a href="/#/commodity">Commodity</a>
+          <Link to="/commodity">Commodity</Link>
         </li>
         <li>
-          <a href="/#/composition">Composition</a>
+          <Link to="/composition">Composition</Link>
         </li>
         <li>
-          <a href="/#/journey">Journey</a>
+          <Link to="/journey">Journey</Link>
         </li>
       </ul>
     </nav>
