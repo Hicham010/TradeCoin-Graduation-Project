@@ -23,11 +23,11 @@ function TradeCoinDapp() {
       </div>
       <div>
         <Routes>
-          <Route path="/" element={<TradeCoin />} />
-          <Route path="/tokenizer" element={<Tokenizer />} />
-          <Route path="/commodity" element={<TradeCoin />} />
-          <Route path="/composition" element={<Composition />} />
-          <Route path="/journey" element={<Journey />} />
+          <Route path="/#/" element={<TradeCoin />} />
+          <Route path="/#/tokenizer" element={<Tokenizer />} />
+          <Route path="/#/commodity" element={<TradeCoin />} />
+          <Route path="/#/composition" element={<Composition />} />
+          <Route path="/#/journey" element={<Journey />} />
         </Routes>
       </div>
       <ToastContainer />
