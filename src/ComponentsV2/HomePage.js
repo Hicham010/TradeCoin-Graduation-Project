@@ -41,8 +41,10 @@ const HomePage = () => {
         blockchain possible. So during my internship it wrote a bunch of smart
         contract. But because the concept of smart contracts and NFT's can be
         hard to understand I also developed this website to showcase how the
-        smart contract work together in creating this tracking system. Below you
-        can find a couple of video's that show how to use the track system. The{" "}
+        smart contract work together in creating this tracking system. That is
+        also why this website doesn't look all that nice. I mainly foccused on
+        the smart contracts. Below you can find a couple of video's that show
+        how to use the track system. The{" "}
         <a
           href=" https://github.com/Hicham010/TradeCoin-Graduation-Project/tree/main"
           target="_blank"
