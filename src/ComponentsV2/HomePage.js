@@ -93,6 +93,10 @@ const HomePage = () => {
         </a>{" "}
         for more information about my thesis.
       </p>
+      <p>
+        Thank you for visiting website and if you have any questions you can
+        shoot me a message.
+      </p>
       <br />
 
       <h4>Tutorial 1: Wallet Setup & Minting a Tokenizer NFT </h4>
