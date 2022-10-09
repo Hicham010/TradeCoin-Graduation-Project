@@ -17,10 +17,15 @@ import TransferFrom from "./TransferFrom";
 import AddTokenizer from "./AddTokenizer";
 import AddInformationHandler from "./AddInformationHandler";
 import AddTransformationDec from "./AddTransformationDec";
+import ConnectModal from "../ConnectModal";
 
 function Composition() {
   return (
     <div>
+      <div>
+        <ConnectModal />
+      </div>
+
       <div className="div3">
         <div className="div1">
           <CreateComposition />

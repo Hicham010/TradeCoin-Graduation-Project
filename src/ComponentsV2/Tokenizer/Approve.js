@@ -12,13 +12,15 @@ function Approve() {
   const field = [["Token ID", setTokenIDVal]];
   const [loading, setLoadingVal] = useState(false);
 
+  const title = "Approve TradeCoin Contract";
+
   async function approve() {
     if (!tokenID) return;
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -26,6 +28,15 @@ function Approve() {
         ContractAdresses.TradeCoinTokenizerV2,
         TokenizerAbi.abi,
         signer
+      );
+      console.log(
+        // (
+        //   await contract.estimateGas.approve(
+        //     ContractAdresses.TradeCoinV4,
+        //     tokenID
+        //   )
+        // ).toNumber()
+        contract.interface.functions
       );
       let transaction;
       try {
@@ -35,7 +46,7 @@ function Approve() {
         );
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

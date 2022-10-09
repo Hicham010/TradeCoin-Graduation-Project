@@ -2,6 +2,7 @@ import "./cards.scss";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function Card(props) {
+  // console.log(props);
   return (
     <div className="l-design-widht">
       <div className="card card--accent">
@@ -33,18 +34,6 @@ function Card(props) {
     </div>
   );
 }
-
-// function showTransaction(tx) {
-//   if (tx !== undefined) {
-//     const etherScanLink = "https://goerli.etherscan.io/tx/" + tx.hash;
-//     return (
-//       <div>
-//         <a href={etherScanLink}>View Transaction</a>
-//       </div>
-//     );
-//   }
-//   return;
-// }
 
 function showSpinner(loading) {
   if (loading === true) {

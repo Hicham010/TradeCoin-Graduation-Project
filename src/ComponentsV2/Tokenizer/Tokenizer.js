@@ -9,10 +9,14 @@ import "../cards.scss";
 import TransferFrom from "./TransferFrom";
 import Approve from "./Approve";
 import ApproveAddress from "./ApproveAddress";
+import ConnectModal from "../ConnectModal";
 
 function Tokenizer() {
   return (
     <div>
+      <div>
+        <ConnectModal />
+      </div>
       <div className="div3">
         <div className="div1">
           <MintToken />

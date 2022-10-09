@@ -12,6 +12,7 @@ function AddTokenizer() {
   const [loading, setLoadingVal] = useState(false);
 
   const fields = [["Address for role", setAddressForRoleVal]];
+  const title = "Grant Tokenizer Role";
 
   async function addTokenizer() {
     if (!addressForRole) return;
@@ -19,7 +20,7 @@ function AddTokenizer() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -35,7 +36,7 @@ function AddTokenizer() {
 
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

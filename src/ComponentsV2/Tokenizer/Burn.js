@@ -11,6 +11,7 @@ function Burn() {
   const [tokenId, setTokenIdVal] = useState(0);
   const field = [["Token ID", setTokenIdVal]];
   const [loading, setLoadingVal] = useState(false);
+  const title = "Burn Commodity";
 
   async function burn() {
     if (!tokenId) return;
@@ -18,7 +19,7 @@ function Burn() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -32,7 +33,7 @@ function Burn() {
         transaction = await contract.burnToken(tokenId);
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

@@ -16,6 +16,7 @@ function AddInformation() {
     ["Product ID", setProductIDVal],
     ["Information", setInfoVal],
   ];
+  const title = "Add Information";
 
   async function addInformationToCommodity() {
     if (!productID && !info) return;
@@ -23,7 +24,7 @@ function AddInformation() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -38,7 +39,7 @@ function AddInformation() {
         transaction = await contract.addInformationToCommodity(productID, info);
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

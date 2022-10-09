@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
@@ -15,19 +16,17 @@ let iHandler;
 let notApproved;
 let accounts;
 
-let address0;
-
-let commodityState = {
-  PendingConfirmation: 0,
-  Confirmed: 1,
-  PendingProcess: 2,
-  Processing: 3,
-  PendingTransport: 4,
-  Transporting: 5,
-  PendingStorage: 6,
-  Stored: 7,
-  EOL: 8,
-};
+// let commodityState = {
+//   PendingConfirmation: 0,
+//   Confirmed: 1,
+//   PendingProcess: 2,
+//   Processing: 3,
+//   PendingTransport: 4,
+//   Transporting: 5,
+//   PendingStorage: 6,
+//   Stored: 7,
+//   EOL: 8,
+// };
 
 beforeEach(async function () {
   TradeCoinTokenizer = await ethers.getContractFactory("TradeCoinTokenizerV2");
@@ -41,7 +40,7 @@ beforeEach(async function () {
   [admin, owner, tokenizer, tHandler, iHandler, notApproved, ...accounts] =
     await ethers.getSigners();
 
-  address0 = "0x0000000000000000000000000000000000000000";
+  // address0 = "0x0000000000000000000000000000000000000000";
 
   await tradeCoinTokenizer.connect(tokenizer).mintToken("cashew", 10, "kg");
   await tradeCoinTokenizer.connect(tokenizer).mintToken("cashew", 30, "kg");
@@ -51,7 +50,7 @@ beforeEach(async function () {
   await tradeCoinTokenizer.connect(tokenizer).mintToken("olive oil", 5, "l");
   await tradeCoinTokenizer.connect(tokenizer).mintToken("banana", 50, "lb");
 
-  for (i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     await tradeCoinTokenizer.connect(tokenizer).approve(tradeCoin.address, i);
   }
 
@@ -74,18 +73,18 @@ beforeEach(async function () {
 describe("Testing the tradecoin contract", function () {
   describe("Testing if all the tokens are minted and the roles assigned", function () {
     it("The cashew tokens should be minted in the tokenizer contract", async function () {
-      commodityTest = "cashew";
-      unitTest = "kg";
+      const commodityTest = "cashew";
+      const unitTest = "kg";
 
-      [commodity0, amount0, unit0] = await tradeCoinTokenizer
+      const [commodity0, , unit0] = await tradeCoinTokenizer
         .connect(tokenizer)
         .tradeCoinToken(0);
 
-      [commodity1, amount1, unit1] = await tradeCoinTokenizer
+      const [commodity1, , unit1] = await tradeCoinTokenizer
         .connect(tokenizer)
         .tradeCoinToken(1);
 
-      [commodity2, amount2, unit2] = await tradeCoinTokenizer
+      const [commodity2, , unit2] = await tradeCoinTokenizer
         .connect(tokenizer)
         .tradeCoinToken(2);
 
@@ -100,11 +99,11 @@ describe("Testing the tradecoin contract", function () {
     });
 
     it("The grain token should be minted in the tokenizer contract", async function () {
-      commodityTest = "grain";
-      amountTest = 5;
-      unitTest = "bu";
+      const commodityTest = "grain";
+      const amountTest = 5;
+      const unitTest = "bu";
 
-      [commodity3, amount3, unit3] = await tradeCoinTokenizer
+      const [commodity3, amount3, unit3] = await tradeCoinTokenizer
         .connect(tokenizer)
         .tradeCoinToken(3);
 
@@ -114,11 +113,11 @@ describe("Testing the tradecoin contract", function () {
     });
 
     it("The olive oil token should be minted in the tokenizer contract", async function () {
-      commodityTest = "olive oil";
-      amountTest = 5;
-      unitTest = "l";
+      const commodityTest = "olive oil";
+      const amountTest = 5;
+      const unitTest = "l";
 
-      [commodity4, amount4, unit4] = await tradeCoinTokenizer
+      const [commodity4, amount4, unit4] = await tradeCoinTokenizer
         .connect(tokenizer)
         .tradeCoinToken(4);
 
@@ -128,11 +127,11 @@ describe("Testing the tradecoin contract", function () {
     });
 
     it("The banana token should be minted in the tokenizer contract", async function () {
-      commodityTest = "banana";
-      amountTest = 50;
-      unitTest = "lb";
+      const commodityTest = "banana";
+      const amountTest = 50;
+      const unitTest = "lb";
 
-      [commodity5, amount5, unit5] = await tradeCoinTokenizer
+      const [commodity5, amount5, unit5] = await tradeCoinTokenizer
         .connect(tokenizer)
         .tradeCoinToken(5);
 
@@ -142,12 +141,12 @@ describe("Testing the tradecoin contract", function () {
     });
 
     it("The supply chain participants should have the appropriate role", async function () {
-      await expect(tradeCoin.connect(owner).isTokenizer(tokenizer.address));
-      await expect(
-        tradeCoin.connect(owner).isInformationHandler(iHandler.address)
+      expect(await tradeCoin.connect(owner).isTokenizer(tokenizer.address));
+      expect(
+        await tradeCoin.connect(owner).isInformationHandler(iHandler.address)
       );
-      await expect(
-        tradeCoin.connect(owner).isTransformationHandler(tHandler.address)
+      expect(
+        await tradeCoin.connect(owner).isTransformationHandler(tHandler.address)
       );
     });
   });
@@ -162,7 +161,7 @@ describe("Testing the tradecoin contract", function () {
         .to.emit(tradeCoin, "InitializeSale")
         .withArgs(0, tokenizer.address, owner.address, 0, true);
 
-      [seller, newOwner, handler, isPaid, price] = await tradeCoin
+      const [seller, newOwner, handler, isPaid, price] = await tradeCoin
         .connect(tokenizer)
         .commoditySaleQueue(0);
 
@@ -222,7 +221,7 @@ describe("Testing the tradecoin contract", function () {
         .to.emit(tradeCoin, "MintCommodity")
         .withArgs(0, tHandler.address, 0, "cashew", 10, "kg");
 
-      [amount, state, hashOfProperties, currentHandler] =
+      const [amount, state, hashOfProperties, currentHandler] =
         await tradeCoin.tradeCoinCommodity(0);
 
       expect(amount.toNumber()).to.be.equal(10);
@@ -273,7 +272,7 @@ describe("Testing the tradecoin contract", function () {
         .connect(tokenizer)
         .initializeSale(owner.address, tHandler.address, 0, 1000);
 
-      [seller, newOwner, handler, isPaid, price] = await tradeCoin
+      const [seller, newOwner, handler, isPaid, price] = await tradeCoin
         .connect(tokenizer)
         .commoditySaleQueue(0);
 
@@ -294,7 +293,7 @@ describe("Testing the tradecoin contract", function () {
 
       await tradeCoin.connect(owner).paymentOfToken(0, { value: 1000 });
 
-      [seller, newOwner, handler, isPaid, price] =
+      const [seller, newOwner, handler, isPaid, price] =
         await tradeCoin.commoditySaleQueue(0);
 
       expect(seller).to.be.equal(tokenizer.address);
@@ -353,7 +352,7 @@ describe("Testing the tradecoin contract", function () {
       await tradeCoin.connect(tHandler).addTransformation(0, "A");
       await tradeCoin.connect(tHandler).addTransformation(0, "Lorem ipsum");
 
-      [amount, , ,] = await tradeCoin.tradeCoinCommodity(0);
+      const [amount, , ,] = await tradeCoin.tradeCoinCommodity(0);
 
       expect(amount.toNumber()).to.be.equal(10);
     });
@@ -369,7 +368,7 @@ describe("Testing the tradecoin contract", function () {
         .to.emit(tradeCoin, "CommodityTransformationDecrease")
         .withArgs(0, tHandler.address, "washing", 1);
 
-      [amount, , ,] = await tradeCoin.tradeCoinCommodity(0);
+      const [amount, , ,] = await tradeCoin.tradeCoinCommodity(0);
 
       await expect(amount.toNumber()).to.be.equal(9);
     });
@@ -488,7 +487,7 @@ describe("Testing the tradecoin contract", function () {
         .to.emit(tradeCoin, "ChangeStateAndHandler")
         .withArgs(0, owner.address, iHandler.address, 5);
 
-      [, state, , currentHandler] = await tradeCoin.tradeCoinCommodity(0);
+      const [, state, , currentHandler] = await tradeCoin.tradeCoinCommodity(0);
 
       expect(state).to.be.equal(5);
       expect(currentHandler).to.be.equal(iHandler.address);
@@ -559,7 +558,7 @@ describe("Testing the tradecoin contract", function () {
         .to.emit(tradeCoin, "BatchCommodities")
         .withArgs(3, owner.address, [0, 1, 2]);
 
-      [amount, state, hashOfProperties, currentHandler] =
+      const [amount, state, , currentHandler] =
         await tradeCoin.tradeCoinCommodity(3);
 
       expect(amount.toNumber()).to.be.equal(10 + 30 + 55);
@@ -580,7 +579,7 @@ describe("Testing the tradecoin contract", function () {
     it("Testing the batching function for 2 tokens", async function () {
       await tradeCoin.connect(owner).batchCommodities([0, 1]);
 
-      [amount, state, hashOfProperties, currentHandler] =
+      const [amount, state, , currentHandler] =
         await tradeCoin.tradeCoinCommodity(3);
 
       expect(amount.toNumber()).to.be.equal(10 + 30);
@@ -640,26 +639,37 @@ describe("Testing the tradecoin contract", function () {
         .to.emit(tradeCoin, "SplitCommodity")
         .withArgs(0, owner.address, [1, 2, 3]);
 
-      [amount1, , , currentHandler1] = await tradeCoin.tradeCoinCommodity(1);
-      [amount2, , , currentHandler2] = await tradeCoin.tradeCoinCommodity(2);
-      [amount3, , , currentHandler3] = await tradeCoin.tradeCoinCommodity(3);
+      const [amount1, , , currentHandler1] = await tradeCoin.tradeCoinCommodity(
+        1
+      );
+      const [amount2, , , currentHandler2] = await tradeCoin.tradeCoinCommodity(
+        2
+      );
+      const [amount3, , , currentHandler3] = await tradeCoin.tradeCoinCommodity(
+        3
+      );
 
-      await expect(amount1.toNumber()).to.be.equal(10);
-      await expect(amount2.toNumber()).to.be.equal(10);
-      await expect(amount3.toNumber()).to.be.equal(10);
+      expect(await amount1.toNumber()).to.be.equal(10);
+      expect(await amount2.toNumber()).to.be.equal(10);
+      expect(await amount3.toNumber()).to.be.equal(10);
 
-      await expect(currentHandler1).to.be.equal(tHandler.address);
-      await expect(currentHandler2).to.be.equal(tHandler.address);
-      await expect(currentHandler3).to.be.equal(tHandler.address);
+      expect(await currentHandler1).to.be.equal(tHandler.address);
+      expect(await currentHandler2).to.be.equal(tHandler.address);
+      expect(await currentHandler3).to.be.equal(tHandler.address);
     });
 
     it("split token into four tokens of 2x10kg and 2x5kg", async function () {
       await tradeCoin.connect(owner).splitCommodity(0, [10, 10, 5, 5]);
 
-      [amount1, , , currentHandler1] = await tradeCoin.tradeCoinCommodity(1);
-      [amount2, , , currentHandler2] = await tradeCoin.tradeCoinCommodity(2);
-      [amount3, , , currentHandler3] = await tradeCoin.tradeCoinCommodity(3);
-      [amount4, , , currentHandler3] = await tradeCoin.tradeCoinCommodity(4);
+      const [amount1, , , currentHandler1] = await tradeCoin.tradeCoinCommodity(
+        1
+      );
+      const [amount2, , , currentHandler2] = await tradeCoin.tradeCoinCommodity(
+        2
+      );
+      const [amount3, , , currentHandler3] = await tradeCoin.tradeCoinCommodity(
+        3
+      );
 
       expect(amount1.toNumber()).to.be.equal(10);
       expect(amount2.toNumber()).to.be.equal(10);

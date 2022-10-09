@@ -12,6 +12,7 @@ function BatchProducts() {
   const [loading, setLoadingVal] = useState(false);
 
   const fields = [["Product IDs", setProductIDsVal]];
+  const title = "Batch Products";
 
   async function batchProducts() {
     if (!productIDs) return;
@@ -19,7 +20,7 @@ function BatchProducts() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -34,7 +35,7 @@ function BatchProducts() {
         transaction = await contract.batchCommodities(productIDs);
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

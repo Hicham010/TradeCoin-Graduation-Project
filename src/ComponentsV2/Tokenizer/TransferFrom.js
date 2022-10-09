@@ -18,13 +18,15 @@ function TransferFrom() {
   ];
   const [loading, setLoadingVal] = useState(false);
 
+  const title = "Transfer From";
+
   async function transferFrom() {
     if (!tokenId && !toAddress && !fromAddress) return;
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
 
       const signer = provider.getSigner();
@@ -43,7 +45,7 @@ function TransferFrom() {
         );
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

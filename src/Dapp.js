@@ -10,20 +10,21 @@ import "react-toastify/dist/ReactToastify.css";
 // import { NotFound } from "./ComponentsV2/NotFound";
 import ConnectModal from "./ComponentsV2/ConnectModal";
 import { Route, Routes } from "react-router-dom";
+import HomePage from "./ComponentsV2/HomePage";
 // import Navbar from "react-bootstrap/Navbar";
 
 function TradeCoinDapp() {
   return (
     <div id="dapp">
-      <div>
+      {/* <div>
         <ConnectModal />
-      </div>
+      </div> */}
       <div>
         <Navbar />
       </div>
       <div>
         <Routes>
-          <Route path="/" element={<TradeCoin />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/tokenizer" element={<Tokenizer />} />
           <Route path="/commodity" element={<TradeCoin />} />
           <Route path="/composition" element={<Composition />} />

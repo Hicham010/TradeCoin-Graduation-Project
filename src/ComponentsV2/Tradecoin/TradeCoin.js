@@ -19,10 +19,14 @@ import TransferFrom from "../Tokenizer/TransferFrom";
 import AddTokenizer from "./AddTokenizer";
 import AddTransformer from "./AddTransformer";
 import AddInformationHandler from "./AddInformationHandler";
+import ConnectModal from "../ConnectModal";
 
 function TradeCoin() {
   return (
     <div>
+      <div>
+        <ConnectModal />
+      </div>
       <div className="div3">
         <div className="div1">
           <InitializeSale />

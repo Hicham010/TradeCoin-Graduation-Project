@@ -17,6 +17,7 @@ function MintToken() {
     ["Unit", setUnitVal],
   ];
   const [loading, setLoadingVal] = useState(false);
+  const title = "Mint Token";
 
   async function mintToken() {
     if (!commodity && !amount && !unit) return;
@@ -25,7 +26,7 @@ function MintToken() {
 
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
 
       setLoadingVal(true);
@@ -40,7 +41,7 @@ function MintToken() {
         transaction = await contract.mintToken(commodity, amount, unit);
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

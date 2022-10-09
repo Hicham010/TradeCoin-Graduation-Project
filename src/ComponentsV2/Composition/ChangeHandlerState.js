@@ -13,6 +13,8 @@ function ChangeHandlerState() {
   const [state, setStateVal] = useState(0);
   const [loading, setLoadingVal] = useState(false);
 
+  const title = "Change Handler & State";
+
   const fields = [
     ["Composition ID", setProductIDVal],
     ["New Handler", setNewHandlerVal],
@@ -25,7 +27,7 @@ function ChangeHandlerState() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
 
@@ -45,7 +47,7 @@ function ChangeHandlerState() {
         );
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

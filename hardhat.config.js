@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-solhint");
@@ -61,10 +62,11 @@ module.exports = {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
   gasReporter: {
-    enabled: false,
+    enabled: true,
     currency: "EUR",
-    // gasPriceApi: process.env.ETHERSCAN_API_KEY,
-    gasPrice: 33,
+    token: "MATIC",
     coinmarketcap: process.env.COIN_MCAP_API_KEY,
+    gasPriceApi:
+      "https://api.polygonscan.com/api?module=proxy&action=eth_gasPrice",
   },
 };

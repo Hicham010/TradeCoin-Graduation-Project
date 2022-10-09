@@ -11,6 +11,7 @@ import CompositionAbi from "../../artifacts/contracts/TradeCoinComposition.sol/T
 
 import ContractAdresses from "./../../contract-address.json";
 import EventLogs from "./EventLogs";
+import ConnectModal from "../ConnectModal";
 
 let provider;
 
@@ -144,7 +145,7 @@ function Journey() {
       null,
       tokenId
     );
-  });
+  }, []);
 
   async function getAllLogsWithIdFromCommodity() {
     setAllLogsVal(() => []);
@@ -205,6 +206,7 @@ function Journey() {
         : filtersComposition;
 
     filters.forEach(async (filter) => {
+      debugger;
       let commodityLogs =
         contractTC === ContractAdresses.TradeCoinV4
           ? await tradeCoinCommodity.queryFilter(filter)
@@ -226,7 +228,7 @@ function Journey() {
         setAllLogsVal((allLogs) => [...allLogs, eventParams]);
       }
     });
-    // console.log(allLogs);
+    console.log(allLogs);
     setTokenIdVal(undefined);
   }
 
@@ -266,12 +268,9 @@ function Journey() {
     if (mapOfOwnerIds.length === 0) {
       notifyInfo("You own no tokens " + contractType);
     } else {
-      notifyInfo(
-        "You own the following token(s) ID(s): " +
-          mapOfOwnerIds.toString() +
-          " " +
-          contractType
-      );
+      notifyInfo(`You own the following token ID(s): 
+          ${mapOfOwnerIds.toString()} 
+          ${contractType}`);
     }
   }
 
@@ -279,6 +278,9 @@ function Journey() {
     console.log(allLogs);
     return (
       <div>
+        <div>
+          <ConnectModal />
+        </div>
         <div>
           <div className="div1">
             <div className="l-design-widht">
@@ -344,6 +346,9 @@ function Journey() {
   } else {
     return (
       <div>
+        <div>
+          <ConnectModal />
+        </div>
         <div className="div3">
           <div className="div1">
             <div className="l-design-widht">

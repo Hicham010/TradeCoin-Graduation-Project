@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
@@ -60,7 +61,7 @@ beforeEach(async function () {
     .connect(admin)
     .addInformationHandler(iHandler.address);
 
-  for (i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     await tradeCoinTokenizer.connect(tokenizer).approve(tradeCoin.address, i);
 
     await tradeCoin
@@ -90,7 +91,7 @@ describe("Test the composition contract", function () {
         .to.emit(tradeCoinComposition, "MintComposition")
         .withArgs(0, owner.address, [0, 1], "cashew mix", 40);
 
-      [amountCompo, , handler] =
+      const [amountCompo, , handler] =
         await tradeCoinComposition.tradeCoinComposition(0);
       expect(amountCompo.toNumber()).to.equal(40);
       expect(handler).to.equal(tHandler.address);
@@ -136,10 +137,12 @@ describe("Test the composition contract", function () {
         .connect(owner)
         .appendCommodityToComposition(0, 2);
 
-      [amountCompo, ,] = await tradeCoinComposition.tradeCoinComposition(0);
+      const [amountCompo, ,] = await tradeCoinComposition.tradeCoinComposition(
+        0
+      );
       expect(amountCompo.toNumber()).to.equal(95);
 
-      [id0, id1, id2] = await tradeCoinComposition.getIdsOfCommodities(0);
+      const [id0, id1, id2] = await tradeCoinComposition.getIdsOfCommodities(0);
       expect(id0.toNumber()).to.equal(0);
       expect(id1.toNumber()).to.equal(1);
       expect(id2.toNumber()).to.equal(2);
@@ -152,7 +155,7 @@ describe("Test the composition contract", function () {
           .appendCommodityToComposition(0, 2)
       ).to.be.revertedWith("Not the owner");
 
-      [id0, id1] = await tradeCoinComposition.getIdsOfCommodities(0);
+      const [id0, id1] = await tradeCoinComposition.getIdsOfCommodities(0);
       expect(id0.toNumber()).to.equal(0);
       expect(id1.toNumber()).to.equal(1);
     });
@@ -170,10 +173,12 @@ describe("Test the composition contract", function () {
         .connect(owner)
         .removeCommodityFromComposition(0, 0);
 
-      [amountCompo, ,] = await tradeCoinComposition.tradeCoinComposition(0);
+      const [amountCompo, ,] = await tradeCoinComposition.tradeCoinComposition(
+        0
+      );
       expect(amountCompo.toNumber()).to.equal(90);
 
-      [id0, id1, id2] = await tradeCoinComposition.getIdsOfCommodities(0);
+      const [id0, id1, id2] = await tradeCoinComposition.getIdsOfCommodities(0);
       expect(id0.toNumber()).to.equal(3);
       expect(id1.toNumber()).to.equal(1);
       expect(id2.toNumber()).to.equal(2);
@@ -208,7 +213,8 @@ describe("Test the composition contract", function () {
           .removeCommodityFromComposition(0, 100)
       ).to.be.revertedWith("Index not in range");
 
-      [id0, id1, id2, id3] = await tradeCoinComposition.getIdsOfCommodities(0);
+      const [id0, id1, id2, id3] =
+        await tradeCoinComposition.getIdsOfCommodities(0);
       expect(id0.toNumber()).to.equal(0);
       expect(id1.toNumber()).to.equal(1);
       expect(id2.toNumber()).to.equal(2);
@@ -260,7 +266,9 @@ describe("Test the composition contract", function () {
       await tradeCoinComposition
         .connect(tHandler)
         .addTransformationDecrease(0, "salting", 1);
-      [amountCompo, ,] = await tradeCoinComposition.tradeCoinComposition(0);
+      const [amountCompo, ,] = await tradeCoinComposition.tradeCoinComposition(
+        0
+      );
       expect(amountCompo.toNumber()).to.equal(44);
     });
 
@@ -437,7 +445,7 @@ describe("Test the composition contract", function () {
     });
 
     it("supportsInterface function", async function () {
-      expect(await !tradeCoinComposition.supportsInterface("0xffffffff"));
+      expect(!(await tradeCoinComposition.supportsInterface("0xffffffff")));
     });
 
     it("Should support the ITradeCoin interface", async function () {
@@ -446,7 +454,9 @@ describe("Test the composition contract", function () {
     });
 
     it("getIdsOfCommoditiesfunction", async function () {
-      [id0, id1, id2] = await tradeCoinComposition.getIdsOfCommodities("0");
+      const [id0, id1, id2] = await tradeCoinComposition.getIdsOfCommodities(
+        "0"
+      );
       expect(id0.toNumber()).to.equal(0);
       expect(id1.toNumber()).to.equal(1);
       expect(id2.toNumber()).to.equal(3);

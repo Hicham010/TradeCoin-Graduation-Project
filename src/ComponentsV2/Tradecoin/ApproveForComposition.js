@@ -11,6 +11,7 @@ function ApproveForComposition() {
   const [commodityToken, setTokenIdOfTokenizerVal] = useState(0);
   const field = [["Commodity ID", setTokenIdOfTokenizerVal]];
   const [loading, setLoadingVal] = useState(false);
+  const title = "Approve for composition";
 
   async function approveForComposition() {
     if (!commodityToken) return;
@@ -18,7 +19,7 @@ function ApproveForComposition() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -36,7 +37,7 @@ function ApproveForComposition() {
         );
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

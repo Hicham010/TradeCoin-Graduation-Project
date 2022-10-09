@@ -16,6 +16,7 @@ function AddTransformation() {
     ["Product ID", setProductIDVal],
     ["Transformation", setTransformationVal],
   ];
+  const title = "Add Transformation";
 
   async function addTransformation() {
     if (!productID && !transformation) return;
@@ -23,7 +24,7 @@ function AddTransformation() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -41,7 +42,7 @@ function AddTransformation() {
         );
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

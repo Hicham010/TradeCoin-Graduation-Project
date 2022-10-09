@@ -18,13 +18,15 @@ function CreateComposition() {
   ];
   const [loading, setLoadingVal] = useState(false);
 
+  const title = "Create Composition";
+
   async function createComposition() {
     if (!compositionName && !tokenIdsOfTC && !newHandler) return;
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -44,7 +46,7 @@ function CreateComposition() {
         );
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

@@ -13,13 +13,14 @@ export const notifyError = (error) => {
   });
 };
 
-const EtherscanLinkOfTx = (txHash) => {
+const EtherscanLinkOfTx = ({ txHash, functionName }) => {
   return (
     <div>
-      <div>Transaction Successful</div>
+      <div>{functionName}, Transaction Successful</div>
       <a
-        href={"https://goerli.etherscan.io/tx/" + txHash.txHash}
+        href={"https://goerli.etherscan.io/tx/" + txHash}
         target="_blank"
+        rel="noreferrer"
       >
         View Transaction
       </a>
@@ -27,16 +28,19 @@ const EtherscanLinkOfTx = (txHash) => {
   );
 };
 
-export const notifySuccess = (txHash) => {
-  toast.success(<EtherscanLinkOfTx txHash={txHash} />, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+export const notifySuccess = (txHash, functionName) => {
+  toast.success(
+    <EtherscanLinkOfTx txHash={txHash} functionName={functionName} />,
+    {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }
+  );
 };
 
 export const notifyInfo = (info) => {

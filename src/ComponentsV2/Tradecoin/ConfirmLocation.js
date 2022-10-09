@@ -22,13 +22,15 @@ function ConfirmLocation() {
     ["Radius", setRadiusVal],
   ];
 
+  const title = "Confirm Location";
+
   async function confirmLocation() {
     if (!productID && !latitude && !longitude && !radius) return;
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
 
@@ -48,7 +50,7 @@ function ConfirmLocation() {
         );
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

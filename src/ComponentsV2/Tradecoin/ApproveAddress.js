@@ -15,6 +15,7 @@ function ApproveAddress() {
     ["Address", setAddressVal],
   ];
   const [loading, setLoadingVal] = useState(false);
+  const title = "Approve Address";
 
   async function approveAddress() {
     if (!tokenID & !address) return;
@@ -22,7 +23,7 @@ function ApproveAddress() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
       const signer = provider.getSigner();
@@ -36,7 +37,7 @@ function ApproveAddress() {
         transaction = await contract.approve(address, tokenID);
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =

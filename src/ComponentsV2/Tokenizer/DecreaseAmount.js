@@ -16,6 +16,7 @@ function DecreaseAmount() {
     ["Token ID", setTokenIdVal],
     ["Amount", setAmountVal],
   ];
+  const title = "Decrease Amount";
 
   async function decreaseAmount() {
     if (!tokenId && !amount) return;
@@ -23,7 +24,7 @@ function DecreaseAmount() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       if ((await provider.getNetwork()).chainId !== 5) {
         notifyError("Connect to the Goerli test net!");
-        throw "error";
+        throw Error("error");
       }
       setLoadingVal(true);
 
@@ -38,7 +39,7 @@ function DecreaseAmount() {
         transaction = await contract.decreaseAmount(tokenId, amount);
         let receipt = await transaction.wait();
         setLoadingVal(false);
-        notifySuccess(receipt.transactionHash);
+        notifySuccess(receipt.transactionHash, title);
       } catch (error) {
         setLoadingVal(false);
         let errorMessage =
