@@ -8,7 +8,7 @@ import Journey from "./ComponentsV2/Journey.js/Journey";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { NotFound } from "./ComponentsV2/NotFound";
-import ConnectModal from "./ComponentsV2/ConnectModal";
+// import ConnectModal from "./ComponentsV2/ConnectModal";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./ComponentsV2/HomePage";
 // import Navbar from "react-bootstrap/Navbar";

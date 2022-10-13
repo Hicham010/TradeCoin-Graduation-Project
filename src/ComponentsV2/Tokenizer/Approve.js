@@ -29,15 +29,15 @@ function Approve() {
         TokenizerAbi.abi,
         signer
       );
-      console.log(
-        // (
-        //   await contract.estimateGas.approve(
-        //     ContractAdresses.TradeCoinV4,
-        //     tokenID
-        //   )
-        // ).toNumber()
-        contract.interface.functions
-      );
+      // console.log(
+      //   // (
+      //   //   await contract.estimateGas.approve(
+      //   //     ContractAdresses.TradeCoinV4,
+      //   //     tokenID
+      //   //   )
+      //   // ).toNumber()
+      //   contract.interface.functions
+      // );
       let transaction;
       try {
         transaction = await contract.approve(

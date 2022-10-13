@@ -145,11 +145,11 @@ function Journey() {
       null,
       tokenId
     );
-  }, []);
+  }, [tokenId]);
 
   async function getAllLogsWithIdFromCommodity() {
     setAllLogsVal(() => []);
-    console.log(contractTC);
+    // console.log(contractTC);
 
     if (tokenId !== 0 && !tokenId) return;
 
@@ -206,7 +206,7 @@ function Journey() {
         : filtersComposition;
 
     filters.forEach(async (filter) => {
-      debugger;
+      // debugger;
       let commodityLogs =
         contractTC === ContractAdresses.TradeCoinV4
           ? await tradeCoinCommodity.queryFilter(filter)
@@ -228,7 +228,7 @@ function Journey() {
         setAllLogsVal((allLogs) => [...allLogs, eventParams]);
       }
     });
-    console.log(allLogs);
+    // console.log(allLogs);
     setTokenIdVal(undefined);
   }
 
@@ -275,20 +275,27 @@ function Journey() {
   }
 
   if (allLogs.length !== 0) {
-    console.log(allLogs);
+    // console.log(allLogs);
     return (
-      <div>
-        <div>
-          <ConnectModal />
-        </div>
-        <div>
+      <>
+        <ConnectModal />
+        <>
           <div className="div1">
             <div className="l-design-widht">
               <div className="card card--accent">
                 <input
                   className="input__field"
                   placeholder="Fill in a tokenId"
-                  onChange={(e) => setTokenIdVal(Number(e.target.value))}
+                  // type="number"
+                  onChange={(e) =>
+                    setTokenIdVal(() => {
+                      e.preventDefault();
+                      // console.log(e.target.value);
+                      if (!isNaN(e.target.value)) {
+                        return Number(e.target.value);
+                      }
+                    })
+                  }
                 />
                 <Select
                   options={options}
@@ -320,7 +327,7 @@ function Journey() {
               </div>
             </div>
           </div>
-        </div>
+        </>
         <br />
         <br />
         <br />
@@ -341,14 +348,12 @@ function Journey() {
             onChange={(e) => setContractTCVal(e.value)}
           />
         </div>
-      </div>
+      </>
     );
   } else {
     return (
-      <div>
-        <div>
-          <ConnectModal />
-        </div>
+      <>
+        <ConnectModal />
         <div className="div3">
           <div className="div1">
             <div className="l-design-widht">
@@ -356,7 +361,15 @@ function Journey() {
                 <input
                   className="input__field"
                   placeholder="Fill in a tokenId"
-                  onChange={(e) => setTokenIdVal(Number(e.target.value))}
+                  onChange={(e) =>
+                    setTokenIdVal(() => {
+                      e.preventDefault();
+                      // console.log(e.target.value);
+                      if (!isNaN(e.target.value)) {
+                        return Number(e.target.value);
+                      }
+                    })
+                  }
                 />
                 <Select
                   options={options}
@@ -389,7 +402,7 @@ function Journey() {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

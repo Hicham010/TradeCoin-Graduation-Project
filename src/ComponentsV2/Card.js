@@ -1,14 +1,13 @@
 import "./cards.scss";
 import ClipLoader from "react-spinners/ClipLoader";
 
-function Card(props) {
-  // console.log(props);
+function Card({ title, inputFields, func, loading }) {
   return (
     <div className="l-design-widht">
       <div className="card card--accent">
-        <h2>{props.title}</h2>
+        <h2>{title}</h2>
 
-        {props.inputFields.map((item) => {
+        {inputFields.map((item) => {
           return (
             <div key={item[0]}>
               <label className="input">
@@ -25,10 +24,10 @@ function Card(props) {
         })}
 
         <div className="button-group">
-          <button className="button-V2" onClick={props.func}>
+          <button className="button-V2" onClick={func}>
             Create
           </button>
-          {showSpinner(props.loading)}
+          {showSpinner(loading)}
         </div>
       </div>
     </div>

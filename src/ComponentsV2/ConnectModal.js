@@ -16,24 +16,14 @@ const customStyles = {
   },
 };
 
-// let address;
 Modal.setAppElement("#root");
 
 function ConnectModal() {
   const [modalIsOpen, setIsOpen] = useState(true);
   const [address, setAddress] = useState("");
-  const [networkID, setNetworkID] = useState(0);
+  const [, setNetworkID] = useState(0);
   const [disableBtn, setDisableBtn] = useState(true);
   const [message, setMessage] = useState("");
-
-  //   function openModal() {
-  //     setIsOpen(true);
-  //   }
-
-  // function afterOpenModal() {
-  // references are now sync'd and can be accessed.
-  // subtitle.style.color = "#f00";
-  // }
 
   function closeModal() {
     setIsOpen(false);
@@ -49,7 +39,7 @@ function ConnectModal() {
 
       let netID = (await provider.getNetwork()).chainId;
       setNetworkID(() => netID);
-      console.log(networkID);
+      // console.log(networkID);
 
       if (netID !== 5) {
         setMessage(
@@ -63,10 +53,10 @@ function ConnectModal() {
           const signer = provider.getSigner();
           addr = await signer.getAddress();
 
-          console.log(addr);
+          // console.log(addr);
 
           setAddress(() => addr);
-          console.log(address);
+          // console.log(address);
           setDisableBtn(false);
           setMessage(
             "Thank you for connecting with " +
@@ -145,6 +135,7 @@ function ConnectModal() {
           address: ContractAdresses.TradeCoinTokenizerV2,
           symbol: "TCT",
           decimals: 0,
+          image: "",
         },
       });
     }

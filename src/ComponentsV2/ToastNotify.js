@@ -18,7 +18,7 @@ const EtherscanLinkOfTx = ({ txHash, functionName }) => {
     <div>
       <div>{functionName}, Transaction Successful</div>
       <a
-        href={"https://goerli.etherscan.io/tx/" + txHash}
+        href={`https://goerli.etherscan.io/tx/${txHash}`}
         target="_blank"
         rel="noreferrer"
       >
