@@ -5,7 +5,7 @@ const HomePage = () => {
     <>
       <div
         className="card card--accent"
-        style={{ marginLeft: "75px", marginRight: "75px" }}
+        style={{ marginLeft: "5%", marginRight: "5%" }}
       >
         <h1>TradeCoin Graduation Internship</h1>
         <p>
@@ -97,15 +97,15 @@ const HomePage = () => {
           for more information about my thesis.
         </p>
         <p>
-          Thank you for visiting my website and if you have any questions you
-          can shoot me a message.
+          Thank you for visiting my page and if you have any questions you can
+          shoot me a message.
         </p>
         <br />
       </div>
 
       <div
         className="card card--accent"
-        style={{ marginLeft: "75px", marginRight: "75px" }}
+        style={{ marginLeft: "5%", marginRight: "5%" }}
       >
         <h3>Tutorial 1: Wallet Setup & Minting a Tokenizer NFT </h3>
         <p>
@@ -131,8 +131,8 @@ const HomePage = () => {
           ID's.
         </p>
         <iframe
-          width="800"
-          height="400"
+          width="100%"
+          height="400px"
           src="https://www.youtube.com/embed/0yyTmbD8zgo"
           title="TradeCoin Tutorial Part 1/3"
           frameBorder="0"
@@ -145,8 +145,8 @@ const HomePage = () => {
       <div
         className="card card--accent"
         style={{
-          marginLeft: "75px",
-          marginRight: "75px",
+          marginLeft: "5%",
+          marginRight: "5%",
         }}
       >
         <h3>Tutorial 2: Role Assigment & Minting a Commodity NFT </h3>
@@ -162,8 +162,8 @@ const HomePage = () => {
           NFT you also burn the tokenizer token.
         </p>
         <iframe
-          width="800"
-          height="400"
+          width="100%"
+          height="400px"
           src="https://www.youtube.com/embed/fvXRRNGOnKY"
           title="TradeCoin Tutorial Part 2/3"
           frameBorder="0"
@@ -176,8 +176,8 @@ const HomePage = () => {
       <div
         className="card card--accent"
         style={{
-          marginLeft: "75px",
-          marginRight: "75px",
+          marginLeft: "5%",
+          marginRight: "5%",
         }}
       >
         <h3>Tutorial 3: Commodity Transformations & Commodity Journey </h3>
@@ -190,8 +190,8 @@ const HomePage = () => {
           transactions and wallets that have interacted with the digital twin.
         </p>
         <iframe
-          width="800"
-          height="400"
+          width="100%"
+          height="400px"
           src="https://www.youtube.com/embed/P8LWUI14P1U"
           title="TradeCoin Tutorial Part 3/3"
           frameBorder="0"
