@@ -8,16 +8,16 @@ export default function Navbar() {
         TradeCoin
       </Link>
       <ul>
-        <li style={{ width: "50%" }}>
+        <li style={{ width: "100%", fontSize: "1em" }}>
           <Link to="/tokenizer">Tokenize</Link>
         </li>
-        <li style={{ width: "50%" }}>
+        <li style={{ width: "100%", fontSize: "1em" }}>
           <Link to="/commodity">Commodity</Link>
         </li>
-        <li style={{ width: "50%" }}>
+        <li style={{ width: "100%", fontSize: "1em" }}>
           <Link to="/composition">Composition</Link>
         </li>
-        <li style={{ width: "50%" }}>
+        <li style={{ width: "100%", fontSize: "1em" }}>
           <Link to="/journey">Journey</Link>
         </li>
       </ul>

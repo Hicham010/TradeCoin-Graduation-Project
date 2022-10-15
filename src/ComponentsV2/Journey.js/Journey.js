@@ -65,86 +65,89 @@ function Journey() {
   ];
 
   useEffect(() => {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    if (typeof window.ethereum !== "undefined") {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    tradeCoinTokenizer = new ethers.Contract(
-      ContractAdresses.TradeCoinTokenizerV2,
-      TokenizerAbi.abi,
-      provider
-    );
+      tradeCoinTokenizer = new ethers.Contract(
+        ContractAdresses.TradeCoinTokenizerV2,
+        TokenizerAbi.abi,
+        provider
+      );
 
-    tradeCoinCommodity = new ethers.Contract(
-      ContractAdresses.TradeCoinV4,
-      CommodityAbi.abi,
-      provider
-    );
+      tradeCoinCommodity = new ethers.Contract(
+        ContractAdresses.TradeCoinV4,
+        CommodityAbi.abi,
+        provider
+      );
 
-    filterMintCommodity = tradeCoinCommodity.filters.MintCommodity(tokenId);
-    filterTransCommodity =
-      tradeCoinCommodity.filters.CommodityTransformation(tokenId);
-    filterTransDecCommodity =
-      tradeCoinCommodity.filters.CommodityTransformationDecrease(tokenId);
-    filterSplitCommodity = tradeCoinCommodity.filters.SplitCommodity(tokenId);
-    filterBatchCommodity = tradeCoinCommodity.filters.BatchCommodities(tokenId);
-    filterBurnCommodity = tradeCoinCommodity.filters.BurnCommodity(tokenId);
-    filterStateHandlerCommodity =
-      tradeCoinCommodity.filters.ChangeStateAndHandler(tokenId);
-    filterQualityCheckCommodity =
-      tradeCoinCommodity.filters.QualityCheckCommodity(tokenId);
-    filterLocationCommodity =
-      tradeCoinCommodity.filters.LocationOfCommodity(tokenId);
-    filterInfoCommodity = tradeCoinCommodity.filters.AddInformation(tokenId);
-    filterEOLCommodity =
-      tradeCoinCommodity.filters.CommodityOutOfChain(tokenId);
-    filterTransferCommodity = tradeCoinCommodity.filters.Transfer(
-      null,
-      null,
-      tokenId
-    );
-    filterApprCommodity = tradeCoinCommodity.filters.Approval(
-      null,
-      null,
-      tokenId
-    );
+      filterMintCommodity = tradeCoinCommodity.filters.MintCommodity(tokenId);
+      filterTransCommodity =
+        tradeCoinCommodity.filters.CommodityTransformation(tokenId);
+      filterTransDecCommodity =
+        tradeCoinCommodity.filters.CommodityTransformationDecrease(tokenId);
+      filterSplitCommodity = tradeCoinCommodity.filters.SplitCommodity(tokenId);
+      filterBatchCommodity =
+        tradeCoinCommodity.filters.BatchCommodities(tokenId);
+      filterBurnCommodity = tradeCoinCommodity.filters.BurnCommodity(tokenId);
+      filterStateHandlerCommodity =
+        tradeCoinCommodity.filters.ChangeStateAndHandler(tokenId);
+      filterQualityCheckCommodity =
+        tradeCoinCommodity.filters.QualityCheckCommodity(tokenId);
+      filterLocationCommodity =
+        tradeCoinCommodity.filters.LocationOfCommodity(tokenId);
+      filterInfoCommodity = tradeCoinCommodity.filters.AddInformation(tokenId);
+      filterEOLCommodity =
+        tradeCoinCommodity.filters.CommodityOutOfChain(tokenId);
+      filterTransferCommodity = tradeCoinCommodity.filters.Transfer(
+        null,
+        null,
+        tokenId
+      );
+      filterApprCommodity = tradeCoinCommodity.filters.Approval(
+        null,
+        null,
+        tokenId
+      );
 
-    tradeCoinComposition = new ethers.Contract(
-      ContractAdresses.TradeCoinComposition,
-      CompositionAbi.abi,
-      provider
-    );
+      tradeCoinComposition = new ethers.Contract(
+        ContractAdresses.TradeCoinComposition,
+        CompositionAbi.abi,
+        provider
+      );
 
-    filterMintComposition =
-      tradeCoinComposition.filters.MintComposition(tokenId);
-    filterRemoveComComposition =
-      tradeCoinComposition.filters.RemoveCommodityFromComposition(tokenId);
-    filterAddComComposition =
-      tradeCoinComposition.filters.AppendCommodityToComposition(tokenId);
-    filterDecompComposition =
-      tradeCoinComposition.filters.Decomposition(tokenId);
-    filterTransComposition =
-      tradeCoinComposition.filters.CompositionTransformation(tokenId);
-    filterTransDecComposition =
-      tradeCoinComposition.filters.CompositionTransformationDecrease(tokenId);
-    filterBurnComposition =
-      tradeCoinComposition.filters.BurnComposition(tokenId);
-    filterStateHandlerComposition =
-      tradeCoinComposition.filters.ChangeStateAndHandler(tokenId);
-    filterQualityCheckComposition =
-      tradeCoinComposition.filters.QualityCheckComposition(tokenId);
-    filterLocationComposition =
-      tradeCoinComposition.filters.LocationOfComposition(tokenId);
-    filterInfoComposition =
-      tradeCoinComposition.filters.AddInformation(tokenId);
-    filterTransferComposition = tradeCoinComposition.filters.Transfer(
-      null,
-      null,
-      tokenId
-    );
-    filterApprComposition = tradeCoinComposition.filters.Approval(
-      null,
-      null,
-      tokenId
-    );
+      filterMintComposition =
+        tradeCoinComposition.filters.MintComposition(tokenId);
+      filterRemoveComComposition =
+        tradeCoinComposition.filters.RemoveCommodityFromComposition(tokenId);
+      filterAddComComposition =
+        tradeCoinComposition.filters.AppendCommodityToComposition(tokenId);
+      filterDecompComposition =
+        tradeCoinComposition.filters.Decomposition(tokenId);
+      filterTransComposition =
+        tradeCoinComposition.filters.CompositionTransformation(tokenId);
+      filterTransDecComposition =
+        tradeCoinComposition.filters.CompositionTransformationDecrease(tokenId);
+      filterBurnComposition =
+        tradeCoinComposition.filters.BurnComposition(tokenId);
+      filterStateHandlerComposition =
+        tradeCoinComposition.filters.ChangeStateAndHandler(tokenId);
+      filterQualityCheckComposition =
+        tradeCoinComposition.filters.QualityCheckComposition(tokenId);
+      filterLocationComposition =
+        tradeCoinComposition.filters.LocationOfComposition(tokenId);
+      filterInfoComposition =
+        tradeCoinComposition.filters.AddInformation(tokenId);
+      filterTransferComposition = tradeCoinComposition.filters.Transfer(
+        null,
+        null,
+        tokenId
+      );
+      filterApprComposition = tradeCoinComposition.filters.Approval(
+        null,
+        null,
+        tokenId
+      );
+    }
   }, [tokenId]);
 
   async function getAllLogsWithIdFromCommodity() {
