@@ -19,33 +19,33 @@ const HomePage = () => {
           </a>{" "}
           and this is my graduation project for the Rotterdam University of
           Applied sciences. I did my internship at BlockLab, a company in
-          Rotterdam, that focusses on energy and logistics. I received a 9.6 for
-          my graduation thesis.
+          Rotterdam, which focuses on energy and logistics. Where I received a
+          9.6 for my graduation thesis.
         </p>
         <p>
           The project I worked on was a proof of concept called TradeCoin. The
           goal of TradeCoin is to lower the deep-tiered financing risk which
           will increase the social, and economic impact for the deepest-tiered
-          supply chain participants in the agricultural supply chain, because it
-          will give them ability to get financing. To accomplish this a supply
-          chain tracking system was to be developed that would track tokenized
+          supply chain participants in the agricultural supply chain because it
+          will unlock new financing methods. To accomplish this a supply chain
+          tracking system was to be developed that would track tokenized
           commodities in a safe accurate and trustworthy way. This was done by
           using non-fungible tokens that would represent the physical
           commodities on the blockchain. The digital twin is then supposed to
-          mimic the commodity, that means that if a transformation happens on
-          the commodity, for example a batch of coffee beans get roasted then
+          mimic the commodity, which means that if a transformation occurs on
+          the commodity, for example, a batch of coffee beans gets roasted then
           this should be present on the digital twin itself as well.
         </p>
         <p>
-          My internship was focussed on creating the smart contract architecture
-          that would make creating a supply chain tracking system on the
-          blockchain possible. So during my internship it wrote a bunch of smart
-          contract. But because the concept of smart contracts and NFT's can be
+          The goal of my internship was on developing a smart contract
+          architecture that would facilitate the creation and mutation of the
+          digital twins. So during my internship, I wrote a bunch of smart
+          contracts. But because the concept of smart contracts and NFTs can be
           hard to understand I also developed this website to showcase how the
-          smart contract work together in creating this tracking system. That is
-          also why this website doesn't look all that nice. I mainly foccused on
-          the smart contracts. Below you can find a couple of video's that show
-          how to use the tracking system. The{" "}
+          smart contracts work together in creating this tracking system. That
+          is also why this website doesn't look all that nice. I was mainly
+          focused on the smart contracts. Below you can find a couple of videos
+          that show how to use the tracking system. The{" "}
           <a
             href=" https://github.com/Hicham010/TradeCoin-Graduation-Project/tree/main"
             target="_blank"
@@ -107,15 +107,15 @@ const HomePage = () => {
         className="card card--accent"
         style={{ marginLeft: "5%", marginRight: "5%" }}
       >
-        <h3>Tutorial 1: Wallet Setup & Minting a Tokenizer NFT </h3>
+        <h3>Tutorial 1: Wallet Set Up & Minting a Tokenizer NFT</h3>
         <p>
-          This tutorial will show you how to setup your wallet to be able to use
-          the tracking system. It will first prompt you to connect with your{" "}
+          This tutorial will show you how to set up your wallet to be able to
+          use the tracking system. It will first prompt you to connect with your{" "}
           <a href="https://metamask.io/" target="_blank" rel="noreferrer">
-            MetaMask extension
-          </a>{" "}
-          and then will ask you to switch to the Goerli testnet. If you don't
-          have any Goerli Ether here is a{" "}
+            MetaMask wallet
+          </a>
+          . Afterwards, it will ask you to switch to the Goerli testnet. If you
+          don't have any Goerli Ether here is a{" "}
           <a
             href=" https://goerli-faucet.pk910.de/"
             target="_blank"
@@ -123,12 +123,12 @@ const HomePage = () => {
           >
             faucet
           </a>{" "}
-          where you can mine some . It is also recommended to add the Token NFT
-          and Commodity NFT to your wallet so it will be visible after minting
-          in your wallet. After the wallet setup a Token NFT will be minted
-          which will be needed to mint a commodity NFT (digital twin). On the
-          Journey page you can find the tokens you own with their corresponding
-          ID's.
+          where you can mine some. It is also recommended to add the Token NFT
+          and Commodity NFT to your wallet so it will be visible in your wallet
+          after it has been minted. After the wallet is set up, a Token NFT will
+          be minted which will be needed to mint a commodity NFT (digital twin).
+          On the Journey page, you can find the tokens you own with their
+          corresponding IDs.
         </p>
         <iframe
           width="100%"
@@ -149,17 +149,17 @@ const HomePage = () => {
           marginRight: "5%",
         }}
       >
-        <h3>Tutorial 2: Role Assigment & Minting a Commodity NFT </h3>
+        <h3>Tutorial 2: Role Assignment & Minting a Commodity NFT</h3>
         <p>
-          The second tutorial will be about minting the commodity NFT. But first
-          you will have to assign a couple of roles to your wallet. These roles
-          would have normally been given to different wallets so multiple people
-          can vouch for the creation of the digital twin. After the roles have
-          been assigned a sale has to be initialised to sell the token to
+          The second tutorial will be about minting the commodity NFT. But
+          first, you will have to assign a couple of roles to your wallet. These
+          roles would have normally been given to different wallets so multiple
+          people can vouch for the creation of the digital twin. After the roles
+          have been assigned a sale has to be initialised to sell the token to
           yourself. Normally, you would be a farmer selling to someone in the
           supply chain. After the initialisation the token can be minted, which
           happens by a handler in this case it is you. By minting the commodity
-          NFT you also burn the tokenizer token.
+          NFT you also burn the tokenizer NFT.
         </p>
         <iframe
           width="100%"
@@ -180,14 +180,15 @@ const HomePage = () => {
           marginRight: "5%",
         }}
       >
-        <h3>Tutorial 3: Commodity Transformations & Commodity Journey </h3>
+        <h3>Tutorial 3: Commodity Transformations & Commodity Journey</h3>
         <p>
-          For the last tutorial we will add some information and transformations
-          to our newly minted commodity token and see the commodity journey.
-          This will also show why the token ID is so important because it will
-          link all of information about the token back to it. After this will we
-          then look at the commodity journey. Where we can find all of the
-          transactions and wallets that have interacted with the digital twin.
+          For the last tutorial, we will add some information and
+          transformations to our newly minted commodity token and see its supply
+          chain journey. This will also show why the token ID is so important
+          because it will link all of the information about the token back to
+          it. Afterwards, we will look at the commodity journey. Where we can
+          find all of the transactions and wallets that have interacted with the
+          digital twin.
         </p>
         <iframe
           width="100%"

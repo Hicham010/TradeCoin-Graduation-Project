@@ -15,20 +15,19 @@ import HomePage from "./ComponentsV2/HomePage";
 
 function TradeCoinDapp() {
   return (
-    <div id="dapp">
-      {/* <div>
-        <ConnectModal />
-      </div> */}
+    <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/tokenizer" element={<Tokenizer />} />
-        <Route path="/commodity" element={<TradeCoin />} />
-        <Route path="/composition" element={<Composition />} />
-        <Route path="/journey" element={<Journey />} />
-      </Routes>
-      <ToastContainer />
-    </div>
+      <div id="dapp">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/tokenizer" element={<Tokenizer />} />
+          <Route path="/commodity" element={<TradeCoin />} />
+          <Route path="/composition" element={<Composition />} />
+          <Route path="/journey" element={<Journey />} />
+        </Routes>
+        <ToastContainer />
+      </div>
+    </>
   );
 }
 
